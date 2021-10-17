@@ -1,0 +1,1451 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Javadoc, 像清水一般清澈透明">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Javadoc | 像清水一般清澈透明</title>
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/css/my.css">
+
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 4.1.1">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="像清水一般清澈透明" type="application/atom+xml">
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">像清水一般清澈透明</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">像清水一般清澈透明</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+<script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/featureimages/10.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Javadoc</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/codeql/" class="post-category">
+                                codeql
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-03-26
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    14 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Javadoc¶"><a href="#Javadoc¶" class="headerlink" title="Javadoc¶"></a>Javadoc<a href="https://codeql.github.com/docs/codeql-language-guides/javadoc/#javadoc" target="_blank" rel="noopener">¶</a></h1><p>You can use CodeQL to find errors in Javadoc comments in Java code.</p>
+<blockquote>
+<p>您可以使用CodeQL来查找Java代码中Javadoc注释的错误。</p>
+</blockquote>
+<h2 id="About-analyzing-Javadoc"><a href="#About-analyzing-Javadoc" class="headerlink" title="About analyzing Javadoc"></a>About analyzing Javadoc</h2><p>To access Javadoc associated with a program element, we use member predicate <code>getDoc</code> of class <code>Element</code>, which returns a <code>Documentable</code>. Class <code>Documentable</code>, in turn, offers a member predicate <code>getJavadoc</code> to retrieve the Javadoc attached to the element in question, if any.</p>
+<blockquote>
+<p>要访问与程序元素相关联的 Javadoc，我们使用 Element 类的成员谓词 getDoc，它返回一个 Documentable。类Documentable则提供了一个成员谓词getJavadoc来检索与相关元素相关的Javadoc，如果有的话。</p>
+</blockquote>
+<p>Javadoc comments are represented by class <code>Javadoc</code>, which provides a view of the comment as a tree of <code>JavadocElement</code> nodes. Each <code>JavadocElement</code> is either a <code>JavadocTag</code>, representing a tag, or a <code>JavadocText</code>, representing a piece of free-form text.</p>
+<blockquote>
+<p>Javadoc注释由类Javadoc表示，它提供了一个注释的视图，即JavadocElement节点的树。每个 JavadocElement 要么是一个 JavadocTag，代表一个标签，要么是一个 JavadocText，代表一段自由格式的文本。</p>
+</blockquote>
+<p>The most important member predicates of class <code>Javadoc</code> are:</p>
+<blockquote>
+<p>Javadoc类最重要的成员谓词是:</p>
+</blockquote>
+<ul>
+<li><p><code>getAChild</code> - retrieves a top-level <code>JavadocElement</code> node in the tree representation.</p>
+<blockquote>
+<p>getAChild - 检索树型表示中的一个顶层JavadocElement节点。</p>
+</blockquote>
+</li>
+<li><p><code>getVersion</code> - returns the value of the <code>@version</code> tag, if any.</p>
+<blockquote>
+<p>getVersion - 返回@version标签的值（如果有的话）。</p>
+</blockquote>
+</li>
+<li><p><code>getAuthor</code> - returns the value of the <code>@author</code> tag, if any.</p>
+<blockquote>
+<p>getAuthor - 如果有的话，返回@author标签的值。</p>
+</blockquote>
+</li>
+</ul>
+<p>For example, the following query finds all classes that have both an <code>@author</code> tag and a <code>@version</code> tag, and returns this information:</p>
+<blockquote>
+<p>例如，下面的查询可以找到所有同时拥有@author标签和@version标签的类，并返回这些信息:</p>
+</blockquote>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import java</span><br><span class="line"></span><br><span class="line">from Class c, Javadoc jdoc, string author, string version</span><br><span class="line">where jdoc = c.getDoc().getJavadoc() and</span><br><span class="line">    author = jdoc.getAuthor() and</span><br><span class="line">    version = jdoc.getVersion()</span><br><span class="line">select c, author, version</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://gitee.com/samny/images/raw/master/7u27er7ec/7u27er7ec.png" alt="image-20210327132707004"></p>
+<p><img src="https://gitee.com/samny/images/raw/master/18u27er18ec/18u27er18ec.png" alt="image-20210327132717979"></p>
+<p><code>JavadocElement</code> defines member predicates <code>getAChild</code> and <code>getParent</code> to navigate up and down the tree of elements. It also provides a predicate <code>getTagName</code> to return the tag’s name, and a predicate <code>getText</code> to access the text associated with the tag.</p>
+<blockquote>
+<p>JavadocElement 定义了成员谓词 getAChild 和 getParent，用于在元素树中上下导航。它还提供了一个谓词 getTagName 来返回标记的名称，以及一个谓词 getText 来访问与标记相关的文本。</p>
+</blockquote>
+<p>We could rewrite the above query to use this API instead of <code>getAuthor</code> and <code>getVersion</code>:</p>
+<blockquote>
+<p>我们可以重写上面的查询，使用这个API代替getAuthor和getVersion:</p>
+</blockquote>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import java</span><br><span class="line"></span><br><span class="line">from Class c, Javadoc jdoc, JavadocTag authorTag, JavadocTag versionTag</span><br><span class="line">where jdoc = c.getDoc().getJavadoc() and</span><br><span class="line">    authorTag.getTagName() = "@author" and authorTag.getParent() = jdoc and</span><br><span class="line">    versionTag.getTagName() = "@version" and versionTag.getParent() = jdoc</span><br><span class="line">select c, authorTag.getText(), versionTag.getText()</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://gitee.com/samny/images/raw/master/7u27er7ec/7u27er7ec.png" alt="image-20210327132707004"></p>
+<p><img src="https://gitee.com/samny/images/raw/master/18u27er18ec/18u27er18ec.png" alt="image-20210327132717979"></p>
+<p>The <code>JavadocTag</code> has several subclasses representing specific kinds of Javadoc tags:</p>
+<blockquote>
+<p>从类c，Javadoc jdoc，JavadocTag authorTag，JavadocTag versionTag:</p>
+</blockquote>
+<ul>
+<li><p><code>ParamTag</code> represents <code>@param</code> tags; member predicate <code>getParamName</code> returns the name of the parameter being documented.</p>
+<blockquote>
+<p>ParamTag代表@param标签；成员谓词getParamName返回被记录的参数名称。</p>
+</blockquote>
+</li>
+<li><p><code>ThrowsTag</code> represents <code>@throws</code> tags; member predicate <code>getExceptionName</code> returns the name of the exception being documented.</p>
+<blockquote>
+<p>ThrowsTag代表@throws标签；成员谓词getExceptionName返回被记录的异常名称。</p>
+</blockquote>
+</li>
+<li><p><code>AuthorTag</code> represents <code>@author</code> tags; member predicate <code>getAuthorName</code> returns the name of the author.</p>
+<blockquote>
+<p>AuthorTag代表@author标签；成员谓词getAuthorName返回被记录的作者名称。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="Example-Finding-spurious-param-tags"><a href="#Example-Finding-spurious-param-tags" class="headerlink" title="Example: Finding spurious @param tags"></a>Example: Finding spurious @param tags</h2><p>As an example of using the CodeQL Javadoc API, let’s write a query that finds <code>@param</code> tags that refer to a non-existent parameter.</p>
+<blockquote>
+<p>作为使用CodeQL Javadoc API的一个例子，让我们写一个查询来查找引用一个不存在的参数的@param标签。</p>
+</blockquote>
+<p>For example, consider this program:</p>
+<blockquote>
+<p>例如，考虑这个程序:</p>
+</blockquote>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class A {</span><br><span class="line">    /**</span><br><span class="line">    * @param lst a list of strings</span><br><span class="line">    */</span><br><span class="line">    public String get(List&lt;String&gt; list) {</span><br><span class="line">        return list.get(0);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Here, the <code>@param</code> tag on <code>A.get</code> misspells the name of parameter <code>list</code> as <code>lst</code>. Our query should be able to find such cases.</p>
+<blockquote>
+<p>这里，A.get上的@param标签将参数列表的名称误写为lst。我们的查询应该能够找到这种情况。</p>
+</blockquote>
+<p>To begin with, we write a query that finds all callables (that is, methods or constructors) and their <code>@param</code> tags:</p>
+<blockquote>
+<p>首先，我们写一个查询，找到所有可调用的方法（即方法或构造函数）和它们的@param标签:</p>
+</blockquote>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import java</span><br><span class="line"></span><br><span class="line">from Callable c, ParamTag pt</span><br><span class="line">where c.getDoc().getJavadoc() = pt.getParent()</span><br><span class="line">select c, pt</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://gitee.com/samny/images/raw/master/10u35er10ec/10u35er10ec.png" alt="image-20210327133510876"></p>
+<p><img src="https://gitee.com/samny/images/raw/master/35u35er35ec/35u35er35ec.png" alt="image-20210327133535667"></p>
+<p><img src="https://gitee.com/samny/images/raw/master/48u35er48ec/48u35er48ec.png" alt="image-20210327133548916"></p>
+<p>It’s now easy to add another conjunct to the <code>where</code> clause, restricting the query to <code>@param</code> tags that refer to a non-existent parameter: we simply need to require that no parameter of <code>c</code> has the name <code>pt.getParamName()</code>.</p>
+<blockquote>
+<p>现在很容易在where子句中添加另一个共轭，将查询限制在引用不存在的参数的@param标签上：我们只需要要求c的任何参数都没有pt.getParamName()这个名字。</p>
+</blockquote>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import java</span><br><span class="line"></span><br><span class="line">from Callable c, ParamTag pt</span><br><span class="line">where c.getDoc().getJavadoc() = pt.getParent() and</span><br><span class="line">    not c.getAParameter().hasName(pt.getParamName())</span><br><span class="line">select pt, "Spurious @param tag."</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://gitee.com/samny/images/raw/master/29u36er29ec/29u36er29ec.png" alt="image-20210327133629753"></p>
+<p><img src="https://gitee.com/samny/images/raw/master/36u36er36ec/36u36er36ec.png" alt="image-20210327133636435"></p>
+<p><img src="https://gitee.com/samny/images/raw/master/49u36er49ec/49u36er49ec.png" alt="image-20210327133649013"></p>
+<h2 id="Example-Finding-spurious-throws-tags"><a href="#Example-Finding-spurious-throws-tags" class="headerlink" title="Example: Finding spurious @throws tags"></a>Example: Finding spurious @throws tags</h2><p>A related, but somewhat more involved, problem is finding <code>@throws</code> tags that refer to an exception that the method in question cannot actually throw.</p>
+<blockquote>
+<p>一个相关的，但比较复杂的问题是找到@throws标签，它指的是一个异常，而该方法实际上不能抛出。</p>
+</blockquote>
+<p>For example, consider this Java program:</p>
+<blockquote>
+<p>例如，考虑这个Java程序:</p>
+</blockquote>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import java.io.IOException;</span><br><span class="line"></span><br><span class="line">class A {</span><br><span class="line">    /**</span><br><span class="line">    * @throws IOException thrown if some IO operation fails</span><br><span class="line">    * @throws RuntimeException thrown if something else goes wrong</span><br><span class="line">    */</span><br><span class="line">    public void foo() {</span><br><span class="line">        // ...</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Notice that the Javadoc comment of <code>A.foo</code> documents two thrown exceptions: <code>IOException</code> and <code>RuntimeException</code>. The former is clearly spurious: <code>A.foo</code> doesn’t have a <code>throws IOException</code> clause, and therefore can’t throw this kind of exception. On the other hand, <code>RuntimeException</code> is an unchecked exception, so it can be thrown even if there is no explicit <code>throws</code> clause listing it. So our query should flag the <code>@throws</code> tag for <code>IOException</code>, but not the one for <code>RuntimeException.</code></p>
+<blockquote>
+<p>请注意，A.foo的Javadoc注释中记录了两个抛出的异常：IOException和RuntimeException。IOException和RuntimeException。前者显然是虚假的：A.foo没有throws IOException子句，因此不能抛出这种异常。另一方面，RuntimeException是一个未被选中的异常，所以即使没有显式的throws子句列出它，它也可以被抛出。所以我们的查询应该标记IOException的@throws标签，而不是RuntimeException的标签。</p>
+</blockquote>
+<p>Remember that the CodeQL library represents <code>@throws</code> tags using class <code>ThrowsTag</code>. This class doesn’t provide a member predicate for determining the exception type that is being documented, so we first need to implement our own version. A simple version might look like this:</p>
+<blockquote>
+<p>记住，CodeQL库使用类ThrowsTag来表示@throws标签。这个类没有提供一个成员谓词来确定被记录的异常类型，所以我们首先需要实现我们自己的版本。一个简单的版本可能是这样的:</p>
+</blockquote>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RefType getDocumentedException(ThrowsTag tt) {</span><br><span class="line">    result.hasName(tt.getExceptionName())</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Similarly, <code>Callable</code> doesn’t come with a member predicate for querying all exceptions that the method or constructor may possibly throw. We can, however, implement this ourselves by using <code>getAnException</code> to find all <code>throws</code> clauses of the callable, and then use <code>getType</code> to resolve the corresponding exception types:</p>
+<blockquote>
+<p>同样，Callable也没有自带一个成员谓词来查询方法或构造函数可能抛出的所有异常。不过，我们可以自己实现这个功能，使用getAnException查找callable的所有抛出子句，然后使用getType解析相应的异常类型:</p>
+</blockquote>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">predicate mayThrow(Callable c, RefType exn) {</span><br><span class="line">    exn.getASupertype*() = c.getAnException().getType()</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Note the use of <code>getASupertype*</code> to find both exceptions declared in a <code>throws</code> clause and their subtypes. For instance, if a method has a <code>throws IOException</code> clause, it may throw <code>MalformedURLException</code>, which is a subtype of <code>IOException</code>.</p>
+<blockquote>
+<p>注意使用getASupertype*来查找throws子句中声明的异常和它们的子类型。例如，如果一个方法有一个throws IOException子句，它可能会抛出MalformedURLException，这是IOException的一个子类型。</p>
+</blockquote>
+<p>Now we can write a query for finding all callables <code>c</code> and <code>@throws</code> tags <code>tt</code> such that:</p>
+<blockquote>
+<p>现在我们可以写一个查询，用于查找所有可调用的c和@throws标签tt，这样:</p>
+</blockquote>
+<ul>
+<li><code>tt</code> belongs to a Javadoc comment attached to <code>c</code>. tt属于附加在c上的Javadoc注释。</li>
+<li><code>c</code> can’t throw the exception documented by <code>tt</code>. c不能抛出tt所记录的异常。</li>
+</ul>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import java</span><br><span class="line"></span><br><span class="line">// Determine the kind of exception for the `ThrowsTag`</span><br><span class="line">RefType getDocumentedException(ThrowsTag tt) {</span><br><span class="line">    result.hasName(tt.getExceptionName())</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">// Find all `throws` clauses of the callable and get the exception type</span><br><span class="line">predicate mayThrow(Callable c, RefType exn) {</span><br><span class="line">    exn.getASupertype*() = c.getAnException().getType()</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">from Callable c, ThrowsTag tt, RefType exn</span><br><span class="line">where c.getDoc().getJavadoc() = tt.getParent+() and</span><br><span class="line">    exn = getDocumentedException(tt) and</span><br><span class="line">    not mayThrow(c, exn)</span><br><span class="line">select tt, "Spurious @throws tag."</span><br></pre></td></tr></tbody></table></figure>
+
+<p>➤ <a href="https://lgtm.com/query/1258570917227966396/" target="_blank" rel="noopener">See this in the query console on LGTM.com</a>. This finds several results in the LGTM.com demo projects.</p>
+<blockquote>
+<p>➤ 在LGTM.com的查询控制台中看到这个。这可以在 LGTM.com 演示项目中找到几个结果。</p>
+</blockquote>
+<p><img src="https://gitee.com/samny/images/raw/master/54u46er54ec/54u46er54ec.png" alt="image-20210327134654810"></p>
+<p><img src="https://gitee.com/samny/images/raw/master/53u52er53ec/53u52er53ec.png" alt="image-20210327135253078"></p>
+<p><img src="https://gitee.com/samny/images/raw/master/42u52er42ec/42u52er42ec.png" alt="image-20210327135242786"></p>
+<h3 id="Improvements"><a href="#Improvements" class="headerlink" title="Improvements"></a>Improvements</h3><p>Currently, there are two problems with this query:</p>
+<blockquote>
+<p>目前，这个查询有两个问题:</p>
+</blockquote>
+<ol>
+<li><p><code>getDocumentedException</code> is too liberal: it will return <em>any</em> reference type with the right name, even if it’s in a different package and not actually visible in the current compilation unit.</p>
+<blockquote>
+<p>getDocumentedException过于自由：它将返回任何名称正确的引用类型，即使它在不同的包中，并且在当前的编译单元中实际上不可见。</p>
+</blockquote>
+</li>
+<li><p><code>mayThrow</code> is too restrictive: it doesn’t account for unchecked exceptions, which do not need to be declared.</p>
+<blockquote>
+<p>mayThrow的限制性太强：它没有考虑到未被选中的异常，而这些异常不需要声明。</p>
+</blockquote>
+</li>
+</ol>
+<p>To see why the former is a problem, consider this program:</p>
+<blockquote>
+<p>要了解为什么前者是个问题，请考虑这个程序:</p>
+</blockquote>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class IOException extends Exception {}</span><br><span class="line"></span><br><span class="line">class B {</span><br><span class="line">    /** @throws IOException an IO exception */</span><br><span class="line">    void bar() throws IOException {}</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>This program defines its own class <code>IOException</code>, which is unrelated to the class <code>java.io.IOException</code> in the standard library: they are in different packages. Our <code>getDocumentedException</code> predicate doesn’t check packages, however, so it will consider the <code>@throws</code> clause to refer to both <code>IOException</code> classes, and thus flag the <code>@param</code> tag as spurious, since <code>B.bar</code> can’t actually throw <code>java.io.IOException</code>.</p>
+<blockquote>
+<p>这个程序定义了自己的类IOException，它与标准库中的类java.io.IOException无关：它们在不同的包中。然而，我们的getDocumentedException谓词并不检查包，因此它会认为@throws子句同时引用两个IOException类，从而将@param标签标记为虚假的，因为B.bar实际上不能抛出java.io.IOException。</p>
+</blockquote>
+<p>As an example of the second problem, method <code>A.foo</code> from our previous example was annotated with a <code>@throws RuntimeException</code> tag. Our current version of <code>mayThrow</code>, however, would think that <code>A.foo</code> can’t throw a <code>RuntimeException</code>, and thus flag the tag as spurious.</p>
+<blockquote>
+<p>作为第二个问题的例子，我们上一个例子中的方法A.foo被注解了一个@throws RuntimeException标签。然而，我们当前版本的mayThrow会认为A.foo不能抛出RuntimeException，从而将这个标签标记为虚假的。</p>
+</blockquote>
+<p>We can make <code>mayThrow</code> less restrictive by introducing a new class to represent unchecked exceptions, which are just the subtypes of <code>java.lang.RuntimeException</code> and <code>java.lang.Error</code>:</p>
+<blockquote>
+<p>我们可以通过引入一个新的类来表示unchecked异常，这只是java.lang.RuntimeException和java.lang.Error的子类型，从而使mayThrow的限制性降低:</p>
+</blockquote>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class UncheckedException extends RefType {</span><br><span class="line">    UncheckedException() {</span><br><span class="line">        this.getASupertype*().hasQualifiedName("java.lang", "RuntimeException") or</span><br><span class="line">        this.getASupertype*().hasQualifiedName("java.lang", "Error")</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Now we incorporate this new class into our <code>mayThrow</code> predicate:</p>
+<blockquote>
+<p>现在我们将这个新类加入到我们的 mayThrow 谓词中:</p>
+</blockquote>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">predicate mayThrow(Callable c, RefType exn) {</span><br><span class="line">    exn instanceof UncheckedException or</span><br><span class="line">    exn.getASupertype*() = c.getAnException().getType()</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Fixing <code>getDocumentedException</code> is more complicated, but we can easily cover three common cases:</p>
+<blockquote>
+<p>修复getDocumentedException比较复杂，但我们可以轻松覆盖三种常见情况:</p>
+</blockquote>
+<ol>
+<li><p>The <code>@throws</code> tag specifies the fully qualified name of the exception.</p>
+<blockquote>
+<p>@throws标签指定了异常的完全限定名称。</p>
+</blockquote>
+</li>
+<li><p>The <code>@throws</code> tag refers to a type in the same package.</p>
+<blockquote>
+<p>@throws标签指的是同一个包中的一个类型。</p>
+</blockquote>
+</li>
+<li><p>The <code>@throws</code> tag refers to a type that is imported by the current compilation unit.</p>
+<blockquote>
+<p>@throws标签指的是当前编译单元导入的类型。</p>
+</blockquote>
+</li>
+</ol>
+<p>The first case can be covered by changing <code>getDocumentedException</code> to use the qualified name of the <code>@throws</code> tag. To handle the second and the third case, we can introduce a new predicate <code>visibleIn</code> that checks whether a reference type is visible in a compilation unit, either by virtue of belonging to the same package or by being explicitly imported. We then rewrite <code>getDocumentedException</code> as:</p>
+<blockquote>
+<p>第一种情况可以通过修改getDocumentedException来使用@throws标签的限定名来处理。为了处理第二种和第三种情况，我们可以引入一个新的谓词visibleIn，它可以检查一个引用类型在编译单元中是否可见，无论是属于同一个包还是被显式导入。然后我们将getDocumentedException重写成:</p>
+</blockquote>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">import java</span><br><span class="line"></span><br><span class="line">// Determine whether a reference type is visible in a compilation unit</span><br><span class="line">predicate visibleIn(CompilationUnit cu, RefType tp) {</span><br><span class="line">    cu.getPackage() = tp.getPackage()</span><br><span class="line">    or</span><br><span class="line">    exists(ImportType it | it.getCompilationUnit() = cu | it.getImportedType() = tp)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">// Determine the kind of exception for the `ThrowsTag`</span><br><span class="line">RefType getDocumentedException(ThrowsTag tt) {</span><br><span class="line">    result.getQualifiedName() = tt.getExceptionName()</span><br><span class="line">    or</span><br><span class="line">    (result.hasName(tt.getExceptionName()) and visibleIn(tt.getFile(), result))</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">// Define a class to represent unchecked exceptions</span><br><span class="line">class UncheckedException extends RefType {</span><br><span class="line">    UncheckedException() {</span><br><span class="line">        this.getASupertype*().hasQualifiedName("java.lang", "RuntimeException") or</span><br><span class="line">        this.getASupertype*().hasQualifiedName("java.lang", "Error")</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">// Find all `throws` clauses of the callable and get the exception type</span><br><span class="line">predicate mayThrow(Callable c, RefType exn) {</span><br><span class="line">    exn instanceof UncheckedException or</span><br><span class="line">    exn.getASupertype*() = c.getAnException().getType()</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">from Callable c, ThrowsTag tt, RefType exn</span><br><span class="line">where c.getDoc().getJavadoc() = tt.getParent+() and</span><br><span class="line">    exn = getDocumentedException(tt) and</span><br><span class="line">    not mayThrow(c, exn)</span><br><span class="line">select tt, "Spurious @throws tag."</span><br></pre></td></tr></tbody></table></figure>
+
+<p>➤ <a href="https://lgtm.com/query/8016848987103345329/" target="_blank" rel="noopener">See this in the query console on LGTM.com</a>. This finds many fewer, more interesting results in the LGTM.com demo projects.</p>
+<blockquote>
+<p>➤ 在LGTM.com的查询控制台中看到。这在LGTM.com的演示项目中发现了很多少而有趣的结果。</p>
+</blockquote>
+<p><img src="https://gitee.com/samny/images/raw/master/40u53er40ec/40u53er40ec.png" alt="image-20210327135340417"></p>
+<p><img src="https://gitee.com/samny/images/raw/master/54u53er54ec/54u53er54ec.png" alt="image-20210327135354874"></p>
+<p><img src="https://gitee.com/samny/images/raw/master/0u54er0ec/0u54er0ec.png" alt="image-20210327135400636"></p>
+<p>Currently, <code>visibleIn</code> only considers single-type imports, but you could extend it with support for other kinds of imports.</p>
+<blockquote>
+<p>目前，visibleIn只考虑单一类型的导入，但你可以扩展它，支持其他类型的导入。</p>
+</blockquote>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">SummerSec</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://summersec.github.io/2021/03/26/Javadoc/">https://summersec.github.io/2021/03/26/Javadoc/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">SummerSec</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/03/26/Abstract%20syntax%20tree%20classes%20for%20working%20with%20Java%20programs/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/featureimages/10.jpg" class="responsive-img" alt="Abstract syntax tree classes for working with Java programs">
+                        
+                        <span class="card-title">Abstract syntax tree classes for working with Java programs</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-03-26
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/codeql/" class="post-category">
+                                    codeql
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/03/26/Annotations%20in%20Java/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/featureimages/17.jpg" class="responsive-img" alt="Annotations in Java">
+                        
+                        <span class="card-title">Annotations in Java</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-26
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/codeql/" class="post-category">
+                                    codeql
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='true'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.5'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2018-2021</span>
+            
+            <span id="year">2018</span>
+            <a href="/about" target="_blank">SummerSec</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">112k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2018";
+                    var startMonth = "6";
+                    var startDate = "28";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/SummerSec" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:summersec@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+    <a href="https://twitter.com/SecSummers" class="tooltipped" target="_blank" data-tooltip="关注我的Twitter: https://twitter.com/SecSummers" data-position="top" data-delay="50">
+        <i class="fab fa-twitter"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/materialize/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/aos/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

